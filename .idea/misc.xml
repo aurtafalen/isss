@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ISSS/app/src/main/res/drawable/account_icon.xml" value="0.37864583333333335" />
+        <entry key="..\:/ISSS/app/src/main/res/drawable/dont_icon.xml" value="0.37864583333333335" />
+        <entry key="..\:/ISSS/app/src/main/res/drawable/error_icon.xml" value="0.37864583333333335" />
         <entry key="..\:/ISSS/app/src/main/res/drawable/roundcorner.xml" value="0.37864583333333335" />
-        <entry key="..\:/ISSS/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/ISSS/app/src/main/res/drawable/sad_icon.xml" value="0.37864583333333335" />
+        <entry key="..\:/ISSS/app/src/main/res/drawable/smile_icon.xml" value="0.37864583333333335" />
+        <entry key="..\:/ISSS/app/src/main/res/layout/activity_main.xml" value="0.33" />
       </map>
     </option>
   </component>
