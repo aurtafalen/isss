@@ -60,7 +60,6 @@ public class Login extends AppCompatActivity {
         progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
 
         if (FirebaseAuth.getInstance().getCurrentUser()!= null) {
-            Toast.makeText(Login.this, "disini", Toast.LENGTH_SHORT).show();
             goToDashboard();
             finish();
         } else {
