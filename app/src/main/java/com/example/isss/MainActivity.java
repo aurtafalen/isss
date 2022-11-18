@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 if (hasAccessSi){
                     Toast.makeText(MainActivity.this, "Yes", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(MainActivity.this, "Anda tidak memiliki akses !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Anda tidak memiliki akses untuk menu safety!", Toast.LENGTH_SHORT).show();
                 }
             }
 
