@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".GTP.Home_Gtp">
 
-    <com.mapbox.maps.MapView
-        android:id="@+id/map"
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapBox"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
@@ -143,6 +143,7 @@
             <!-- Column 5 -->
 
             <LinearLayout
+                android:id="@+id/mBerhenti"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"

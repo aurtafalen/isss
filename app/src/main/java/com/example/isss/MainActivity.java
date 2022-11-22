@@ -65,9 +65,14 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot documentSnapshot = task.getResult();
 
-                accessPage = (List<String>) documentSnapshot.get("access_page");
-                displayName = findViewById(R.id.txt_username);
-                displayName.setText("Hi, "+documentSnapshot.get("displayName")+"!");
+                if (task.isComplete()){
+                    accessPage = (List<String>) documentSnapshot.get("access_page");
+                    displayName = findViewById(R.id.txt_username);
+                    displayName.setText("Hi, "+documentSnapshot.get("displayName")+"!");
+                }else{
+                    Log.d("taskStatus", "noComplate");
+                }
+
 
             }
         });
@@ -120,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     if (hasAccessGtp){
                         Intent intent = new Intent(MainActivity.this, Home_Gtp.class);
                         startActivity(intent);
+                        finish();
                     }else{
                         Toast.makeText(MainActivity.this, "Anda tidak memiliki akses !", Toast.LENGTH_SHORT).show();
                     }
