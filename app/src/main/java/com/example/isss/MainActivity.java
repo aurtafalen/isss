@@ -2,11 +2,16 @@ package com.example.isss;
 
 import static android.content.ContentValues.TAG;
 
+import static com.mapbox.mapboxsdk.Mapbox.getApplicationContext;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.helper.widget.Carousel;
 
+import android.app.ActivityManager;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -21,8 +26,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.isss.GTP.Home_Gtp;
+import com.example.isss.GTP.LocationService;
+import com.example.isss.GTP.SendDataPatroli;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -32,7 +41,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -40,19 +51,34 @@ public class MainActivity extends AppCompatActivity {
     CarouselView news;
     int[] sampleImages = {R.drawable.slide8, R.drawable.slide6, R.drawable.slide1, R.drawable.slide2, R.drawable.slide3};
 
+    //
     CardView ht,gtp,safety;
     TextView displayName;
     ImageView person;
+
+    //Firebase
     DatabaseReference token;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
     DocumentReference docRef;
     List<String> accessPage;
 
+    //loading
+    ProgressDialog progress;
+
+    //dateformat
+    SimpleDateFormat dateFormat;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //loading
+        progress = new ProgressDialog(this);
+        progress.setMessage("Loading...");
+        progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
+        progress.show();
 
         //firebase
         db= FirebaseFirestore.getInstance();
@@ -69,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     accessPage = (List<String>) documentSnapshot.get("access_page");
                     displayName = findViewById(R.id.txt_username);
                     displayName.setText("Hi, "+documentSnapshot.get("displayName")+"!");
+                    progress.dismiss();
                 }else{
                     Log.d("taskStatus", "noComplate");
                 }
@@ -123,9 +150,42 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d(TAG, "hasAccessGtp : "+hasAccessGtp);
                     if (hasAccessGtp){
-                        Intent intent = new Intent(MainActivity.this, Home_Gtp.class);
-                        startActivity(intent);
-                        finish();
+                        //atribut
+                        dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+                        String iddoc = dateFormat.format(Calendar.getInstance().getTime());
+                        Timestamp fwaktu = Timestamp.now();
+                        String judul = "Patroli Rutin";
+
+                        //sendData
+                        SendDataPatroli sendDataPatroli = new SendDataPatroli(fwaktu, displayName.getText().toString(), judul);
+                        db.collection("Patroli").document(iddoc).set(sendDataPatroli)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful())
+                                        {
+                                            Intent intent = new Intent(MainActivity.this, Home_Gtp.class);
+                                            intent.putExtra("idDoc",iddoc);
+                                            startActivity(intent);
+                                            finish();
+                                            progress.dismiss();
+
+                                        }
+                                        else
+                                        {
+                                            progress.dismiss();
+                                            Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                progress.dismiss();
+                                Toast.makeText(MainActivity.this, "Internet Bermasalah!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
                     }else{
                         Toast.makeText(MainActivity.this, "Anda tidak memiliki akses !", Toast.LENGTH_SHORT).show();
                     }
@@ -166,4 +226,11 @@ public class MainActivity extends AppCompatActivity {
             imageView.setColorFilter(Color.LTGRAY,PorterDuff.Mode.MULTIPLY);
         }
     };
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
 }

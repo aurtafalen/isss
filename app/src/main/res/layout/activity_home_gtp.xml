@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GTP.Home_Gtp">
+    tools:context=".GTP.Home_Gtp"
+    android:id="@+id/homeGTP">
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapBox"
