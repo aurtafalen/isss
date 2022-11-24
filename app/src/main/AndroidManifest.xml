@@ -20,12 +20,14 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.ISSS">
+        <activity
+            android:name=".GTP.Scan"
+            android:exported="false" />
 
         <service
             android:name=".GTP.ServiceKeluar"
             android:enabled="true"
             android:exported="true" />
-
         <service
             android:name=".GTP.LocationService"
             android:enabled="true"
@@ -51,7 +53,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>

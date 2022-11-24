@@ -69,10 +69,13 @@ public class MainActivity extends AppCompatActivity {
     //dateformat
     SimpleDateFormat dateFormat;
 
+    //String
+    String dName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //loading
         progress = new ProgressDialog(this);
@@ -92,9 +95,10 @@ public class MainActivity extends AppCompatActivity {
                 DocumentSnapshot documentSnapshot = task.getResult();
 
                 if (task.isComplete()){
+                    dName = String.valueOf(documentSnapshot.get("displayName"));
                     accessPage = (List<String>) documentSnapshot.get("access_page");
                     displayName = findViewById(R.id.txt_username);
-                    displayName.setText("Hi, "+documentSnapshot.get("displayName")+"!");
+                    displayName.setText("Hi, "+dName+"!");
                     progress.dismiss();
                 }else{
                     Log.d("taskStatus", "noComplate");
@@ -157,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
                         String judul = "Patroli Rutin";
 
                         //sendData
-                        SendDataPatroli sendDataPatroli = new SendDataPatroli(fwaktu, displayName.getText().toString(), judul);
+                        SendDataPatroli sendDataPatroli = new SendDataPatroli(fwaktu, dName, judul);
                         db.collection("Patroli").document(iddoc).set(sendDataPatroli)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
@@ -166,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                                         {
                                             Intent intent = new Intent(MainActivity.this, Home_Gtp.class);
                                             intent.putExtra("idDoc",iddoc);
+                                            intent.putExtra("displayName",dName);
                                             startActivity(intent);
                                             finish();
                                             progress.dismiss();

@@ -13,6 +13,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Geocoder;
+import android.location.Location;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -25,8 +27,11 @@ import android.widget.Toast;
 
 import com.example.isss.MainActivity;
 import com.example.isss.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.Timestamp;
@@ -34,6 +39,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.android.core.permissions.PermissionsManager;
 import com.mapbox.mapboxsdk.Mapbox;
@@ -50,7 +57,11 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 import com.mapbox.maps.plugin.Plugin;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
+import java.util.Locale;
 
 public class Home_Gtp extends AppCompatActivity implements
         OnMapReadyCallback, OnLocationClickListener, PermissionsListener, OnCameraTrackingChangedListener {
@@ -64,15 +75,22 @@ public class Home_Gtp extends AppCompatActivity implements
     private LocationComponent locationComponent;
     private PermissionsManager permissionsManager;
 
+    //scan
+    private IntentIntegrator qrScan;
+
     //loading
     ProgressDialog progress;
 
     //menu
-    LinearLayout berhenti;
+    LinearLayout berhenti, scan;
 
     //firebase
     FirebaseFirestore dbs;
     DatabaseReference lokasionline;
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +101,9 @@ public class Home_Gtp extends AppCompatActivity implements
         //firebase
         dbs = FirebaseFirestore.getInstance();
 
+        //scan
+        qrScan = new IntentIntegrator(this);
+
         //loading
         progress = new ProgressDialog(this);
         progress.setMessage("Loading...");
@@ -92,7 +113,7 @@ public class Home_Gtp extends AppCompatActivity implements
         if (Mapbox.getAccessToken().isEmpty()) {
             Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
             Log.d("tokenAcc", "isEmpty");
-        }else{
+        } else {
             Log.d("tokenAcc", "noEmpty");
             mapView = (MapView) findViewById(R.id.mapBox);
             mapView.onCreate(savedInstanceState);
@@ -104,6 +125,14 @@ public class Home_Gtp extends AppCompatActivity implements
                 public void onClick(View v) {
                     dialog("Yakin berhenti patroli?");
 
+                }
+            });
+
+            scan = findViewById(R.id.mScan);
+            scan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    qrScan.initiateScan();
                 }
             });
 
@@ -147,9 +176,7 @@ public class Home_Gtp extends AppCompatActivity implements
 
             if (ActivityCompat.checkSelfPermission(
                     this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                    this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-
-            {
+                    this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
             locationComponent.setLocationComponentEnabled(true);
@@ -165,7 +192,7 @@ public class Home_Gtp extends AppCompatActivity implements
             locationComponent.addOnCameraTrackingChangedListener(this);
 
 
-        }else {
+        } else {
             permissionsManager = new PermissionsManager(this);
             permissionsManager.requestLocationPermissions(this);
         }
@@ -178,7 +205,6 @@ public class Home_Gtp extends AppCompatActivity implements
         mapView.onStart();
         cekgps();
         isOnline();
-        Log.d("dicari", "onStart()");
 
     }
 
@@ -247,14 +273,14 @@ public class Home_Gtp extends AppCompatActivity implements
         Toast.makeText(Home_Gtp.this, "Tidak dapat kembali saat melakukan patroli!", Toast.LENGTH_SHORT).show();
     }
 
-    private boolean isLocationServiceRunning(){
+    private boolean isLocationServiceRunning() {
         ActivityManager activityManager =
                 (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         if (activityManager != null) {
-            for(ActivityManager.RunningServiceInfo service :
-                    activityManager.getRunningServices(Integer.MAX_VALUE)){
-                if (LocationService.class.getName().equals(service.service.getClassName())){
-                    if (service.foreground){
+            for (ActivityManager.RunningServiceInfo service :
+                    activityManager.getRunningServices(Integer.MAX_VALUE)) {
+                if (LocationService.class.getName().equals(service.service.getClassName())) {
+                    if (service.foreground) {
                         return true;
                     }
                 }
@@ -264,32 +290,34 @@ public class Home_Gtp extends AppCompatActivity implements
         return false;
     }
 
-    private void startLocationService(){
-        if (!isLocationServiceRunning()){
+    private void startLocationService() {
+        if (!isLocationServiceRunning()) {
             Log.d("dicari", "startLocationService()");
             Intent intent = new Intent(getApplicationContext(), LocationService.class);
             intent.setAction(Constants.ACTION_START_LOCATION_SERVICE);
             String idDocument = getIntent().getStringExtra("idDoc");
-            intent.putExtra("idDoc",idDocument);
+            intent.putExtra("idDoc", idDocument);
             startService(intent);
 
         }
     }
-    private void stopLocationService(){
-        if (isLocationServiceRunning()){
-            Intent intent = new Intent(getApplicationContext(),LocationService.class);
+
+    private void stopLocationService() {
+        if (isLocationServiceRunning()) {
+            Intent intent = new Intent(getApplicationContext(), LocationService.class);
             intent.setAction(Constants.ACTION_STOP_LOCATION_SERVICE);
             startService(intent);
         }
     }
 
-    private void cekgps(){
-        final LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+    private void cekgps() {
+        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             buildAlertMessageNoGps();
         }
     }
+
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("PERINGATAN")
@@ -304,12 +332,13 @@ public class Home_Gtp extends AppCompatActivity implements
         final AlertDialog alert = builder.create();
         alert.show();
     }
+
     public boolean isOnline() {
         ConnectivityManager conMgr = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
 
-        if(netInfo == null || !netInfo.isConnected() || !netInfo.isAvailable()){
-            Snackbar.make(findViewById(R.id.homeGTP),"Internet Bermasalah!",Snackbar.LENGTH_INDEFINITE)
+        if (netInfo == null || !netInfo.isConnected() || !netInfo.isAvailable()) {
+            Snackbar.make(findViewById(R.id.homeGTP), "Internet Bermasalah!", Snackbar.LENGTH_INDEFINITE)
                     .setAction("OK", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -323,13 +352,13 @@ public class Home_Gtp extends AppCompatActivity implements
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_LOCATION_PERMISSION && grantResults.length >0){
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+        if (requestCode == REQUEST_CODE_LOCATION_PERMISSION && grantResults.length > 0) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 startLocationService();
             }
 
-        }else {
-            Toast.makeText(this, "PERMISSION DENIED !",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "PERMISSION DENIED !", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -375,5 +404,55 @@ public class Home_Gtp extends AppCompatActivity implements
             }
         });
         alertDialogBuilder.show();
+    }
+
+    //Getting the scan results
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            //if qrcode has nothing in it
+            if (result.getContents() == null) {
+//                Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
+            } else {
+                //if qr contains data
+                try {
+                    //converting the data to json
+                    JSONObject obj = new JSONObject(result.getContents());
+//                    //setting values to textviews
+
+                    String idDocument = getIntent().getStringExtra("idDoc");
+                    String displayName = getIntent().getStringExtra("displayName");
+                    String id = (obj.getString("id"));
+                    String cekPointLat = (obj.getString("checkpointLat"));
+                    String cekPointLng = (obj.getString("checkpointLng"));
+                    String lokasi = (obj.getString("location"));
+                    String area = (obj.getString("area"));
+
+                    Log.d("hasildistance", " :tidak Jauh");
+                    Intent qr = new Intent(Home_Gtp.this,Scan.class);
+                    qr.putExtra("id",id);
+                    qr.putExtra("checkpointLat",cekPointLat);
+                    qr.putExtra("checkpointLng",cekPointLng);
+                    qr.putExtra("location",lokasi);
+                    qr.putExtra("area",area);
+                    qr.putExtra("idDoc",idDocument);
+                    qr.putExtra("displayName",displayName);
+                    startActivity(qr);
+
+                } catch (JSONException e) {
+//                    e.printStackTrace();
+                    //if control comes here
+                    //that means the encoded format not matches
+                    //in this case you can display whatever data is available on the qrcode
+                    //to a toast
+                    Toast.makeText(Home_Gtp.this, "Gagal,Lakukan scan kembali!", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
+                }
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }
