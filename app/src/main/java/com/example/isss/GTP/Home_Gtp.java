@@ -82,13 +82,14 @@ public class Home_Gtp extends AppCompatActivity implements
     ProgressDialog progress;
 
     //menu
-    LinearLayout berhenti, scan;
+    LinearLayout berhenti, scan ,kegiatan;
 
     //firebase
     FirebaseFirestore dbs;
     DatabaseReference lokasionline;
 
-
+    //String
+    String idDocument,displayName;
 
 
     @Override
@@ -97,6 +98,10 @@ public class Home_Gtp extends AppCompatActivity implements
         //getTokenMapbox
         Mapbox.getInstance(this, getString(R.string.mapbox_access_token));
         setContentView(R.layout.activity_home_gtp);
+
+        //string
+        idDocument = getIntent().getStringExtra("idDoc");
+        displayName = getIntent().getStringExtra("displayName");
 
         //firebase
         dbs = FirebaseFirestore.getInstance();
@@ -133,6 +138,17 @@ public class Home_Gtp extends AppCompatActivity implements
                 @Override
                 public void onClick(View v) {
                     qrScan.initiateScan();
+                }
+            });
+
+            kegiatan = findViewById(R.id.kegiatan);
+            kegiatan.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Home_Gtp.this,Kegiatan.class);
+                    intent.putExtra("idDoc", idDocument);
+                    intent.putExtra("displayName",displayName);
+                    startActivity(intent);
                 }
             });
 
@@ -295,7 +311,6 @@ public class Home_Gtp extends AppCompatActivity implements
             Log.d("dicari", "startLocationService()");
             Intent intent = new Intent(getApplicationContext(), LocationService.class);
             intent.setAction(Constants.ACTION_START_LOCATION_SERVICE);
-            String idDocument = getIntent().getStringExtra("idDoc");
             intent.putExtra("idDoc", idDocument);
             startService(intent);
 
@@ -372,7 +387,6 @@ public class Home_Gtp extends AppCompatActivity implements
                 progress.show();
                 //date firebase
                 Timestamp fwaktu = Timestamp.now();
-                String idDocument = getIntent().getStringExtra("idDoc");
                 dbs.collection("Patroli").document(idDocument).update("waktuKeluar", fwaktu)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -422,8 +436,7 @@ public class Home_Gtp extends AppCompatActivity implements
                     JSONObject obj = new JSONObject(result.getContents());
 //                    //setting values to textviews
 
-                    String idDocument = getIntent().getStringExtra("idDoc");
-                    String displayName = getIntent().getStringExtra("displayName");
+
                     String id = (obj.getString("id"));
                     String cekPointLat = (obj.getString("checkpointLat"));
                     String cekPointLng = (obj.getString("checkpointLng"));

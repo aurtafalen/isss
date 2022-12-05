@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GTP.Kegiatan">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:text="Lapor Kegiatan"
+            android:textSize="30dp"
+            android:textAlignment="center"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txt_location"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/eLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Lokasi Kegiatan"
+                android:paddingStart="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txt_desc"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="20dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/eDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Deskripsi Kegiatan"
+                android:paddingStart="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <GridLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
+            android:columnCount="1"
+            android:background="@drawable/border"
+            android:orientation="horizontal">
+                <!-- Column 1 -->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerFoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/foto_icon"/>
+
+                <GridLayout
+                    android:id="@+id/gFoto"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:columnCount="1"
+                    android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/foto_icon"
+                            android:layout_marginTop="5dp"/>
+
+                        <TextView
+                            android:id="@+id/txt_tambahfoto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tambah Foto"
+                            android:paddingBottom="5dp"
+                            android:textAlignment="center"/>
+                </GridLayout>
+        </GridLayout>
+
+        <Button
+            android:id="@+id/kirim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Kirim"/>
+    </LinearLayout>
+
+</ScrollView>
