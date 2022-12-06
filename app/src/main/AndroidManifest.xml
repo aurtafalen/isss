@@ -22,7 +22,8 @@
         android:theme="@style/Theme.ISSS">
         <activity
             android:name=".GTP.Kegiatan"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".GTP.Scan"
             android:exported="false" />

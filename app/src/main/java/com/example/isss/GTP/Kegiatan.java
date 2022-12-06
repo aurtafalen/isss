@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,6 +24,7 @@ import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
@@ -61,7 +64,7 @@ public class Kegiatan extends AppCompatActivity {
     Timestamp fwaktu = Timestamp.now();
 
     //String
-    String displayName,idDocument,txtFoto;
+    String displayName,idDocument;
 
     //loading
     ProgressDialog progress;
@@ -83,10 +86,14 @@ public class Kegiatan extends AppCompatActivity {
     private static final int PICK_FROM_GALLERY = 107;
     private static final int IMAGE_CODE = 1;
 
+    //array
+    ArrayList listImage = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kegiatan);
+
 
         //foto
         rFoto = findViewById(R.id.recyclerFoto);
@@ -126,16 +133,17 @@ public class Kegiatan extends AppCompatActivity {
                String getLokasi = eLokasi.getText().toString();
                String getDeskripsi = eDeskripsi.getText().toString();
 
-                if (getLokasi.isEmpty()&& getDeskripsi.isEmpty()) {
+                if (getLokasi.isEmpty()&& getDeskripsi.isEmpty()&& listImage.isEmpty()) {
                     eLokasi.setError("Tidak boleh kosong !");
                     eDeskripsi.setError("Tidak boleh kosong !");
+                    Toast.makeText(getApplicationContext(), "Foto Tidak Boleh kosong !", Toast.LENGTH_LONG).show();
 
                 }
                 else if (getLokasi.isEmpty()) {
                     eLokasi.setError("Tidak boleh kosong !");
                 } else if (getDeskripsi.isEmpty()) {
                     eDeskripsi.setError("Tidak boleh kosong !");
-                } else if (txtFoto == null) {
+                } else if (listImage.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Foto Tidak Boleh kosong !", Toast.LENGTH_LONG).show();
                 } else {
                     progress.show();
@@ -160,7 +168,7 @@ public class Kegiatan extends AppCompatActivity {
 
                             SendDataKegiatan sendDataMultimedia = new SendDataKegiatan(
                                     eDeskripsi.getText().toString(),
-                                    txtFoto,
+                                    listImage,
                                     fwaktu,
                                     displayName,
                                     eLokasi.getText().toString(),
@@ -181,6 +189,7 @@ public class Kegiatan extends AppCompatActivity {
                                                 i.putExtra("idDoc", idDocument);
                                                 i.putExtra("displayName",displayName);
                                                 startActivity(i);
+                                                finish();
                                             } else {
                                                 Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                             }
@@ -215,18 +224,16 @@ public class Kegiatan extends AppCompatActivity {
         if (requestCode == IMAGE_CODE && resultCode == RESULT_OK) {
 
             if (data.getClipData() != null) {
+                Log.d("dataFoto", "multiple");
 
                 rFoto.removeAllViews();
                 rFoto.setHasFixedSize(true);
                 rFoto.setLayoutManager(new LinearLayoutManager(this));
 
-                ArrayList listImage = new ArrayList<>();
+                listImage = new ArrayList<>();
 
                 int totalitem = data.getClipData().getItemCount();
                 Log.d("totalFoto", String.valueOf(totalitem));
-                if (totalitem < 2){
-                    Log.d("totalFoto", "1");
-                }
 
                 for (int i = 0; i < totalitem; i++) {
                     Uri imageUri = data.getClipData().getItemAt(i).getUri();
@@ -253,7 +260,41 @@ public class Kegiatan extends AppCompatActivity {
                         }
                     });
                 }
+            }else if (data.getData() != null) {
+
+                Log.d("dataFoto", "single");
+                rFoto.removeAllViews();
+                rFoto.setHasFixedSize(true);
+                rFoto.setLayoutManager(new LinearLayoutManager(this));
+
+                listImage = new ArrayList<>();
+
+                Uri imageUri = data.getData();
+                listImage.add(imageUri);
+                String imagename = getFileName(imageUri);
+                ModalClass modalClass = new ModalClass(imagename, imageUri);
+
+                modalClassList.add(modalClass);
+
+                customAdapter = new CustomAdapter(Kegiatan.this, modalClassList);
+                rFoto.setAdapter(customAdapter);
+
+                StorageReference mRef = mStorageReference.child(imagename);
+                mRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        listImage.add(imagename);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Kegiatan.this, "Fail" + e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
             }
+
         }
     }
 
@@ -277,5 +318,11 @@ public class Kegiatan extends AppCompatActivity {
             }
         }
         return result;
+    }
+
+    private String getFileExt(Uri contentUri) {
+        ContentResolver c = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(c.getType(contentUri));
     }
 }

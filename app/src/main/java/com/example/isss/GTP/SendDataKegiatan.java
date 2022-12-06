@@ -3,25 +3,25 @@ package com.example.isss.GTP;
 
 import com.google.firebase.Timestamp;
 
+import java.util.ArrayList;
+
 public class SendDataKegiatan {
     private String deskripsi;
-    private String txtfoto;
+    private ArrayList listImage;
     private Timestamp time;
     private String team;
     private String lokasi;
     private Double CurrentLat;
     private Double CurrentLng;
 
-
-
-    public SendDataKegiatan(String deskripsi, String txtfoto, Timestamp time, String team, String lokasi, Double CurrentLat, Double CurrentLng) {
+    public SendDataKegiatan(String deskripsi, ArrayList listImage, Timestamp time, String team, String lokasi, Double currentLat, Double currentLng) {
         this.deskripsi = deskripsi;
-        this.txtfoto = txtfoto;
+        this.listImage = listImage;
         this.time = time;
         this.team = team;
         this.lokasi = lokasi;
-        this.CurrentLat = CurrentLat;
-        this.CurrentLng = CurrentLng;
+        CurrentLat = currentLat;
+        CurrentLng = currentLng;
     }
 
     public String getDeskripsi() {
@@ -32,12 +32,12 @@ public class SendDataKegiatan {
         this.deskripsi = deskripsi;
     }
 
-    public String getTxtfoto() {
-        return txtfoto;
+    public ArrayList getListImage() {
+        return listImage;
     }
 
-    public void setTxtfoto(String txtfoto) {
-        this.txtfoto = txtfoto;
+    public void setListImage(ArrayList listImage) {
+        this.listImage = listImage;
     }
 
     public Timestamp getTime() {
