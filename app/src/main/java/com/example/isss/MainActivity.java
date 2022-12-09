@@ -25,6 +25,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.isss.BRS.BRS;
 import com.example.isss.GTP.Home_Gtp;
 import com.example.isss.GTP.LocationService;
 import com.example.isss.GTP.SendDataPatroli;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
     int[] sampleImages = {R.drawable.slide8, R.drawable.slide6, R.drawable.slide1, R.drawable.slide2, R.drawable.slide3};
 
     //
-    CardView ht,gtp,safety;
+    CardView ht,gtp,safety,brs;
     TextView displayName;
     ImageView person;
 
@@ -219,6 +220,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,HandlyTalky.class);
+                startActivity(intent);
+            }
+        });
+
+        brs = findViewById(R.id.card_brs);
+        brs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BRS.class);
                 startActivity(intent);
             }
         });
