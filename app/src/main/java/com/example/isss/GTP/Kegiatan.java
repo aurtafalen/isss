@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ClipData;
@@ -166,7 +167,7 @@ public class Kegiatan extends AppCompatActivity {
                             double CurrentLat = location.getLatitude();
                             double CurrentLng = location.getLongitude();
 
-                            SendDataKegiatan sendDataMultimedia = new SendDataKegiatan(
+                            SendDataKegiatan sendDataKegiatan = new SendDataKegiatan(
                                     eDeskripsi.getText().toString(),
                                     listImage,
                                     fwaktu,
@@ -176,7 +177,7 @@ public class Kegiatan extends AppCompatActivity {
                                     CurrentLng
                             );
 
-                            dbs.collection("Kegiatan").document().set(sendDataMultimedia)
+                            dbs.collection("Kegiatan").document().set(sendDataKegiatan)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -297,7 +298,7 @@ public class Kegiatan extends AppCompatActivity {
 
         }
     }
-
+    @SuppressLint("Range")
     public String getFileName(Uri uri) {
         String result = null;
         if (uri.getScheme().equals("content")) {

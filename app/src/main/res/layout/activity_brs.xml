@@ -91,6 +91,33 @@
                 android:autofillHints="username"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/lTimeIncident"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:padding="15dp"
+            android:background="@drawable/border"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/vDate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Waktu " />
+
+            <TextView
+                android:id="@+id/vTime"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Kejadian" />
+
+
+        </LinearLayout>
+
         <GridLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -132,6 +159,7 @@
                     android:orientation="vertical">
 
                     <CheckBox
+                        android:id="@+id/Disruption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Disruption of Operations"
@@ -152,6 +180,7 @@
                     android:orientation="vertical">
 
                     <CheckBox
+                        android:id="@+id/Property"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Property Damage / Loss"
@@ -184,6 +213,7 @@
                 android:orientation="vertical">
 
                 <CheckBox
+                    android:id="@+id/Environmental"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Environmental Risk"
@@ -203,6 +233,7 @@
                 android:orientation="vertical">
 
                 <CheckBox
+                    android:id="@+id/iFirst"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" Injury - First Aid"
@@ -234,6 +265,7 @@
                     android:orientation="vertical">
 
                     <CheckBox
+                        android:id="@+id/iRestricted"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Injury - Restricted Work"
@@ -253,6 +285,7 @@
                     android:orientation="vertical">
 
                     <CheckBox
+                        android:id="@+id/iLost"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Injury - Lost Time"
@@ -284,6 +317,7 @@
                     android:orientation="vertical">
 
                     <CheckBox
+                        android:id="@+id/Fatality"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Fatality"
@@ -350,6 +384,7 @@
         </GridLayout>
 
         <Button
+            android:id="@+id/btn_kirim"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="KIRIM"
