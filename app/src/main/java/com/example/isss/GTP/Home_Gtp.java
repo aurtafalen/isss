@@ -25,6 +25,7 @@ import android.view.animation.BounceInterpolator;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.isss.BRS.BRS;
 import com.example.isss.MainActivity;
 import com.example.isss.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -82,7 +83,7 @@ public class Home_Gtp extends AppCompatActivity implements
     ProgressDialog progress;
 
     //menu
-    LinearLayout berhenti, scan ,kegiatan;
+    LinearLayout berhenti, scan ,kegiatan,BRS;
 
     //firebase
     FirebaseFirestore dbs;
@@ -149,9 +150,21 @@ public class Home_Gtp extends AppCompatActivity implements
                     intent.putExtra("idDoc", idDocument);
                     intent.putExtra("displayName",displayName);
                     startActivity(intent);
+
                 }
             });
 
+            BRS = findViewById(R.id.brs);
+            BRS.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Home_Gtp.this, com.example.isss.BRS.BRS.class);
+                    intent.putExtra("idDoc", idDocument);
+                    intent.putExtra("displayName",displayName);
+                    startActivity(intent);
+                    finish();
+                }
+            });
         }
 
     }
@@ -387,19 +400,23 @@ public class Home_Gtp extends AppCompatActivity implements
                 progress.show();
                 //date firebase
                 Timestamp fwaktu = Timestamp.now();
-                dbs.collection("Patroli").document(idDocument).update("waktuKeluar", fwaktu)
+                dbs.collection("gtp")
+                        .document("data_checkpoint")
+                        .collection("checkpoint")
+                        .document(idDocument)
+                        .update("waktuKeluar", fwaktu)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
+                                    progress.dismiss();
                                     lokasionline = FirebaseDatabase.getInstance().getReference("lokasionline")
                                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
                                     lokasionline.getRef().removeValue();
                                     Intent i = new Intent(Home_Gtp.this, MainActivity.class);
                                     stopLocationService();
                                     startActivity(i);
-                                    finish();
-                                    progress.dismiss();
+                                    finishAffinity();
 
                                 } else {
                                     progress.dismiss();

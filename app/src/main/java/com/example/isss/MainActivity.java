@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseAuth.getInstance().signOut();
                             Intent i = new Intent(MainActivity.this, Login.class);
                             startActivity(i);
-                            onBackPressed();
+                            finishAffinity();
                         }
                         return false;
                     }
@@ -163,7 +163,11 @@ public class MainActivity extends AppCompatActivity {
 
                         //sendData
                         SendDataPatroli sendDataPatroli = new SendDataPatroli(fwaktu, dName, judul);
-                        db.collection("Patroli").document(iddoc).set(sendDataPatroli)
+                        db.collection("gtp")
+                                .document("data_checkpoint")
+                                .collection("checkpoint")
+                                .document(iddoc)
+                                .set(sendDataPatroli)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
@@ -248,4 +252,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+//    @Override
+//    public void onBackPressed() {
+////        super.onBackPressed();
+//    }
 }

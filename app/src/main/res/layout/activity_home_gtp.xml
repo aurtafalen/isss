@@ -38,6 +38,7 @@
 
 
             <LinearLayout
+                android:id="@+id/brs"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -57,7 +58,7 @@
                     android:layout_height="match_parent"
 
                     android:gravity="center"
-                    android:text="Incident"
+                    android:text="BRS"
                     android:textColor="@color/white" />
 
 

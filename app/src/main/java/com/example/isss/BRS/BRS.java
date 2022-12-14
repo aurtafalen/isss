@@ -147,7 +147,7 @@ public class BRS extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         // Set the selected date in the TextView
                         vDate = findViewById(R.id.vDate);
-                        vDate.setText(String.format("%d/%d/%d", day, month, year));
+                        vDate.setText(String.format("%d/%d/%d", day, month+1, year));
                     }
                 }, year, month, day);
 
@@ -278,8 +278,7 @@ public class BRS extends AppCompatActivity {
                     String txtDate = vDate.getText().toString();
                     String txtTime = vTime.getText().toString();
                     String dateString = txtDate+txtTime;
-                    Log.d("cekgettime", txtDate+txtTime+dateString);
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy hh:mm");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
                     try {
                         // Parse the string into a date object
                         Date date = dateFormat.parse(dateString);
@@ -289,6 +288,7 @@ public class BRS extends AppCompatActivity {
 
                         // Use the timestamp with Firebase
                         ts = new Timestamp(date);
+                        Log.d("getDateString",String.valueOf(date)+" dateString : "+txtDate);
 
 
                     } catch (ParseException e) {
@@ -360,13 +360,22 @@ public class BRS extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 progress.dismiss();
 
-                                                Toast.makeText(getApplicationContext(), "Laporan berhasil masuk!", Toast.LENGTH_LONG).show();
+                                                if (idDocument == null){
+                                                    Toast.makeText(getApplicationContext(), "Laporan berhasil masuk!", Toast.LENGTH_LONG).show();
+                                                    Intent i = new Intent(BRS.this, MainActivity.class);
+                                                    i.putExtra("idDoc", idDocument);
+                                                    i.putExtra("displayName",displayName);
+                                                    startActivity(i);
+                                                    finish();
+                                                }else{
+                                                    Toast.makeText(getApplicationContext(), "Laporan berhasil masuk!", Toast.LENGTH_LONG).show();
+                                                    Intent i = new Intent(BRS.this, Home_Gtp.class);
+                                                    i.putExtra("idDoc", idDocument);
+                                                    i.putExtra("displayName",displayName);
+                                                    startActivity(i);
+                                                    finish();
+                                                }
 
-                                                Intent i = new Intent(BRS.this, MainActivity.class);
-                                                i.putExtra("idDoc", idDocument);
-                                                i.putExtra("displayName",displayName);
-                                                startActivity(i);
-                                                finish();
                                             } else {
                                                 Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                             }
@@ -502,6 +511,5 @@ public class BRS extends AppCompatActivity {
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(c.getType(contentUri));
     }
-
 
 }

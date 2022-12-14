@@ -177,7 +177,10 @@ public class Kegiatan extends AppCompatActivity {
                                     CurrentLng
                             );
 
-                            dbs.collection("Kegiatan").document().set(sendDataKegiatan)
+                            dbs.collection("gtp")
+                                    .document("data_kegiatan")
+                                    .collection("kegiatan")
+                                    .document().set(sendDataKegiatan)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -298,6 +301,7 @@ public class Kegiatan extends AppCompatActivity {
 
         }
     }
+
     @SuppressLint("Range")
     public String getFileName(Uri uri) {
         String result = null;
@@ -325,5 +329,10 @@ public class Kegiatan extends AppCompatActivity {
         ContentResolver c = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(c.getType(contentUri));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

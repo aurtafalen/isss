@@ -310,7 +310,10 @@ public class Scan extends AppCompatActivity {
                 CurrentLng,
                 ttdText);
 
-        DocumentReference kirim = dbs.collection("Patroli").document(idDocument);
+        DocumentReference kirim = dbs.collection("gtp")
+                .document("data_checkpoint")
+                .collection("checkpoint")
+                .document(idDocument);
         kirim.update("checkPoint", FieldValue.arrayUnion(sendDataScan))
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
