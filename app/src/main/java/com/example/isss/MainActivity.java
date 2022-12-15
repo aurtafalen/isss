@@ -20,6 +20,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -34,8 +37,12 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -58,11 +65,12 @@ public class MainActivity extends AppCompatActivity {
     ImageView person;
 
     //Firebase
-    DatabaseReference token;
+    DatabaseReference token,lokasionline;
     FirebaseFirestore db;
     FirebaseAuth mAuth;
     DocumentReference docRef;
     List<String> accessPage;
+    FirebaseUser firebaseUser;
 
     //loading
     ProgressDialog progress;
@@ -71,12 +79,11 @@ public class MainActivity extends AppCompatActivity {
     SimpleDateFormat dateFormat;
 
     //String
-    String dName;
+    String dName,dataku;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         //loading
         progress = new ProgressDialog(this);
@@ -87,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
         //firebase
         db= FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
 
         //getDataAccount
         docRef = db.collection("users").document(mAuth.getCurrentUser().getUid());
@@ -109,6 +117,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //checkDataAccount
+        lokasionline = FirebaseDatabase.getInstance().getReference("lokasionline")
+                .child(firebaseUser.getUid()).getRef();
+        lokasionline.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                GetIdAda getIdAda = snapshot.getValue(GetIdAda.class);
+
+                if (getIdAda != null) {
+                    dataku =getIdAda.getId();
+                    Intent intent = new Intent(MainActivity.this, Home_Gtp.class);
+                    intent.putExtra("idDoc", dataku);
+                    startActivity(intent);
+                    onBackPressed();
+                    finish();
+                    progress.dismiss();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Internet bermasalah!", Toast.LENGTH_SHORT).show();
+            }
+
+        });
 
         news = findViewById(R.id.news_carousel);
         news.setPageCount(sampleImages.length);
@@ -252,8 +285,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public void onBackPressed() {
-////        super.onBackPressed();
-//    }
+
 }
