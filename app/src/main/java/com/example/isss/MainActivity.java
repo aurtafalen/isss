@@ -32,6 +32,7 @@ import com.example.isss.BRS.BRS;
 import com.example.isss.GTP.Home_Gtp;
 import com.example.isss.GTP.LocationService;
 import com.example.isss.GTP.SendDataPatroli;
+import com.example.isss.SI.Side_SI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -244,7 +245,9 @@ public class MainActivity extends AppCompatActivity {
 
                 Log.d(TAG, "hasAccessGtp : "+hasAccessSi);
                 if (hasAccessSi){
-                    Toast.makeText(MainActivity.this, "Yes", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, Side_SI.class);
+                    startActivity(intent);
+
                 }else{
                     Toast.makeText(MainActivity.this, "Anda tidak memiliki akses untuk menu safety!", Toast.LENGTH_SHORT).show();
                 }
@@ -284,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
     }
+
 
 
 }

@@ -1,5 +1,16 @@
 <resources>
     <string name="app_name">ISSS</string>
     <string name="mapbox_access_token" translatable="false">sk.eyJ1IjoiYXVydGE5OCIsImEiOiJja2k5ejdhYnkwa2c2MnJtbnZyYWFpMHI4In0.QoWRec9fFQsiE-t2S7f1Ug</string>
+    <string name="title_activity_side_si">Side_SI</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 
 </resources>

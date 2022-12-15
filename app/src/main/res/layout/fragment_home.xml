@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SI.ui.home.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cParent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@id/cParent"
+        app:layout_constraintTop_toTopOf="@id/cParent">
+
+        <TextView
+            android:id="@+id/dAnalik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Data Analytics"
+            android:textColor="@color/text_abu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="Inspeksi"
+            android:textColor="@color/text_dark"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:visibility="invisible"
+        android:id="@+id/tanggal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="Sekarang"
+        android:textColor="@color/text_abu"
+        android:textSize="13dp"
+        app:layout_constraintEnd_toStartOf="@+id/bTgl"
+        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:visibility="invisible"
+        android:id="@+id/bTgl"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/filtertanggal_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardsatu"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Inspeksi"
+            android:textColor="@color/text_abu"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/tvR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="35dp"
+            android:textStyle="bold"
+            android:textSize="22dp"
+
+            android:textColor="@color/text_dark" />
+
+        <TextView
+            android:id="@+id/allTurun"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:background="@drawable/turun_icon"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/allnaik"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:background="@drawable/naik_icon"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/persenAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1%"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/CPP"/>
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/statusAll"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Turun 30 hari terakhir"-->
+        <!--            android:textColor="@color/text_abu"-->
+        <!--            android:layout_marginLeft="70dp"-->
+        <!--            android:layout_marginTop="70dp"/>-->
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/team_icon"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="25dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/carddua"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardsatu" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inspeksi Aman"
+            android:textColor="@color/text_abu"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/tvPython"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="35dp"
+            android:textStyle="bold"
+            android:textSize="22dp"
+            android:textColor="@color/text_dark" />
+
+        <TextView
+            android:id="@+id/amanNaik"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:background="@drawable/naik_icon"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/amanTurun"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:background="@drawable/turun_icon"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="10dp"/>
+
+
+        <TextView
+            android:id="@+id/persenAman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6%"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/Python"/>
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/statusAman"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Naik 30 hari terakhir"-->
+        <!--            android:textColor="@color/text_abu"-->
+        <!--            android:layout_marginLeft="70dp"-->
+        <!--            android:layout_marginTop="70dp"/>-->
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bintang_icon"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="25dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardtiga"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carddua" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Inspeksi Tidak Aman"
+            android:textColor="@color/text_abu"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/tvCPP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="35dp"
+            android:textStyle="bold"
+            android:textSize="22dp"
+            android:textColor="@color/text_dark" />
+
+        <TextView
+            android:id="@+id/tidakamanTurun"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:background="@drawable/turun_icon"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/tidakamanNaik"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:background="@drawable/naik_icon"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/persenTidakAman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9%"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/CPP"/>
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/statusTidakAman"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Turun 30 hari terakhir"-->
+        <!--            android:textColor="@color/text_abu"-->
+        <!--            android:layout_marginLeft="70dp"-->
+        <!--            android:layout_marginTop="70dp"/>-->
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/batang_icon"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="25dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewGraph"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:foregroundGravity="bottom"
+        android:elevation="10dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardtiga">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <org.eazegraph.lib.charts.PieChart
+                android:id="@+id/piechart"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_weight="1"
+                android:padding="6dp" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical">
+
+                    <!--View to display the yellow color icon-->
+                    <View
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/Java" />
+
+                    <!--Text view to display R -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:text="Total Inspeksi"
+                        android:textColor="@color/text_dark"
+                        android:textSize="11dp" />
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/tvR"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_alignParentRight="true"-->
+                    <!--                        android:fontFamily="sans-serif-light"-->
+                    <!--                        android:paddingEnd="10dp"-->
+                    <!--                        android:text="0"-->
+                    <!--                        android:textAlignment="textEnd"-->
+                    <!--                        android:textColor="@color/R"-->
+                    <!--                        android:textSize="11dp"-->
+                    <!--                        android:textStyle="bold" />-->
+
+                </LinearLayout>
+
+                <!--Linear layout to display Python-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp">
+
+                    <!--View to display the green color icon-->
+                    <View
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/Python" />
+
+                    <!--Text view to display python text -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:text="Inspeksi Aman"
+                        android:textColor="@color/text_dark"
+                        android:textSize="11dp" />
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/tvPython"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_alignParentRight="true"-->
+                    <!--                        android:fontFamily="sans-serif-light"-->
+                    <!--                        android:paddingEnd="10dp"-->
+                    <!--                        android:text="0"-->
+                    <!--                        android:textAlignment="textEnd"-->
+                    <!--                        android:textColor="@color/Python"-->
+                    <!--                        android:textSize="11dp"-->
+                    <!--                        android:textStyle="bold" />-->
+
+
+                </LinearLayout>
+
+                <!--Linear layout to display C++-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="5dp">
+
+                    <!--View to display the red color icon-->
+                    <View
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/CPP" />
+
+                    <!--Text view to display C++ text -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:text="Inspeksi Tidak Aman"
+                        android:textColor="@color/text_dark"
+                        android:textSize="11dp" />
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/tvCPP"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_alignParentRight="true"-->
+                    <!--                        android:fontFamily="sans-serif-light"-->
+                    <!--                        android:paddingEnd="10dp"-->
+                    <!--                        android:text="0"-->
+                    <!--                        android:textAlignment="textEnd"-->
+                    <!--                        android:textColor="@color/CPP"-->
+                    <!--                        android:textSize="11dp"-->
+                    <!--                        android:textStyle="bold" />-->
+                </LinearLayout>
+
+                <!--Linear layout to display Java-->
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
