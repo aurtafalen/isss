@@ -13,4 +13,27 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
+    <string name="menu_dahsboard">Dashboard</string>
+    <string name="menu_inspeksi">Inspeksi</string>
+    <string name="menu_tugas">Tugas</string>
+    <string name="menu_logsheet">Log Sheet</string>
+
+    <string name="title_activity_tab_inspeksi">tabInspeksi</string>
+    <string name="tab_text_1">TODO</string>
+    <string name="tab_text_2">DONE</string>
+
+    <string-array name="filtergroup">
+        <item>Semua</item>
+        <item>WSH</item>
+        <item>FSD</item>
+    </string-array>
+
+    <string-array name="filterteam">
+        <item>Pilih Team</item>
+        <item>Team A</item>
+        <item>Team B</item>
+        <item>Team C</item>
+        <item>Team D</item>
+    </string-array>
+
 </resources>

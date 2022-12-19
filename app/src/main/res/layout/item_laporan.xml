@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginRight="20dp"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="20dp"
+    android:elevation="5dp"
+    android:background="@drawable/cardview">
+
+    <TextView
+        android:id="@+id/Ttitle"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="6dp"
+        android:text="Judul Inspeksi"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:textColor="@color/text_dark" />
+
+    <TextView
+        android:id="@+id/Tdescription"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp"
+        android:text="Deskripsi"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/text_dark"
+        android:textSize="9dp"
+        android:lines="2" />
+
+
+    <TextView
+        android:id="@+id/Tauth"
+        android:layout_width="125dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="65dp"
+        android:text="Auther"
+        android:textColor="@color/text_dark"
+        android:textSize="9dp"
+        />
+
+    <TextView
+        android:id="@+id/Tstatus"
+        android:layout_width="155dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="65dp"
+        android:text="Status"
+        android:textColor="@color/text_dark"
+        android:textSize="9dp"
+        android:visibility="invisible"
+        />
+
+    <TextView
+        android:id="@+id/Tgroup1"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="WSH"
+        android:textColor="@color/white"
+        android:background="@drawable/labelhijau" />
+
+    <TextView
+        android:id="@+id/Tgroup2"
+        android:layout_width="50dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="FSD"
+        android:textColor="@color/white"
+        android:background="@drawable/labelmerah" />
+
+</FrameLayout>
