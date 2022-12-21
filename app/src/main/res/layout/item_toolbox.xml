@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="220dp"
+    android:layout_marginLeft="22dp"
+    android:layout_marginTop="17dp"
+    android:elevation="5dp"
+    android:background="@drawable/cardview">
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/lokasiListToolbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="6dp"
+        android:text="Judul Inspeksi"
+        android:textSize="20dp"
+        android:textColor="@color/text_dark" />
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/topik"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
+        android:text="Topik"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/nama_icon" />
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/statusListToolbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="65dp"
+        android:text="Status"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/status_icon" />
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/kehadiranListToolbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="90dp"
+        android:text="kehadiran"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/jumlah_icon" />
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/tanggal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="115dp"
+        android:text="Tanggal"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="115dp"
+        android:background="@drawable/tanggal_icon"/>
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="140dp"
+        android:text="Input"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/input_icon"/>
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/tanggapanListToolbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="165dp"
+        android:text="Tanggapan"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="165dp"
+        android:background="@drawable/tanggapan_icon"/>
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/targetwaktu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="190dp"
+        android:text="Target Waktu"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="190dp"
+        android:background="@drawable/target_icon"/>
+
+</FrameLayout>

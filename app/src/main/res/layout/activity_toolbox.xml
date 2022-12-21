@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SI.Toolbox">
+
+    <FrameLayout
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <!--        <androidx.appcompat.widget.AppCompatButton-->
+        <!--            android:id="@+id/btnback"-->
+        <!--            android:layout_width="30dp"-->
+        <!--            android:layout_height="30dp"-->
+        <!--            android:background="@drawable/back_icon"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            android:layout_marginLeft="20dp"-->
+        <!--            tools:layout_editor_absoluteX="16dp"-->
+        <!--            tools:layout_editor_absoluteY="10dp" />-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ToolBox"
+            android:textColor="@color/abucard"
+            android:textSize="25dp"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constrain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/location_text_input"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="@id/constrain"
+                app:layout_constraintStart_toStartOf="@id/constrain"
+                app:layout_constraintTop_toTopOf="@id/constrain">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/lokasiToolbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Lokasi" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/topik_text_input"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="@id/constrain"
+                app:layout_constraintStart_toStartOf="@id/constrain"
+                app:layout_constraintTop_toBottomOf="@+id/location_text_input">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/topik"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Topik" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/kehadiran_text_input"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="@id/constrain"
+                app:layout_constraintStart_toStartOf="@id/constrain"
+                app:layout_constraintTop_toBottomOf="@+id/topik_text_input">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/kehadiranToolbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Kehadiran" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_text_input"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="@id/constrain"
+                app:layout_constraintStart_toStartOf="@id/constrain"
+                app:layout_constraintTop_toBottomOf="@+id/kehadiran_text_input">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Input" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tanggapan_text_input"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="@id/constrain"
+                app:layout_constraintStart_toStartOf="@id/constrain"
+                app:layout_constraintTop_toBottomOf="@+id/input_text_input">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tanggapan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tanggapan" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/target_text_input"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="@id/constrain"
+                app:layout_constraintStart_toStartOf="@id/constrain"
+                app:layout_constraintTop_toBottomOf="@+id/tanggapan_text_input">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/target"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Target Waktu" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/statusToolbox_text_input"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="@id/constrain"
+                app:layout_constraintStart_toStartOf="@id/constrain"
+                app:layout_constraintTop_toBottomOf="@+id/target_text_input">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/statusToolbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Status" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/selesaiToolbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="50dp"
+                android:elevation="10dp"
+                android:text="Selesai"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/constrain"
+                app:layout_constraintEnd_toEndOf="@id/constrain"
+                app:layout_constraintStart_toStartOf="@id/constrain"
+                app:layout_constraintTop_toBottomOf="@+id/statusToolbox_text_input" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

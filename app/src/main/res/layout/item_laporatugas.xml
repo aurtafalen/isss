@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="120dp"
+    android:layout_marginLeft="22dp"
+    android:layout_marginTop="17dp"
+    android:elevation="5dp"
+    android:background="@drawable/cardview">
+
+    <TextView
+        android:id="@+id/judul"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="6dp"
+        android:text="Judul Inspeksi"
+        android:singleLine="true"
+        android:textSize="20dp"
+        android:textColor="@color/text_dark" />
+
+    <TextView
+        android:id="@+id/desk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="40dp"
+        android:text="Deskripsi"
+        android:singleLine="true"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="50dp"
+        android:background="@drawable/nama_icon"
+        android:singleLine="true"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:id="@+id/team"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="90dp"
+        android:text="Access : ?? Orang"
+        android:singleLine="true"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/jumlah_icon"
+        android:singleLine="true"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="65dp"
+        android:text="Status"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/status_icon"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:background="@drawable/cardviewhijau"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnlanjut"
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/next_icon_putih" />
+
+</FrameLayout>

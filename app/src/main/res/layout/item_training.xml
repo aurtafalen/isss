@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="150dp"
+    android:layout_marginLeft="22dp"
+    android:layout_marginTop="17dp"
+    android:elevation="5dp"
+    android:background="@drawable/cardview">
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/lokasiListTraining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="6dp"
+        android:text="Judul Inspeksi"
+        android:textSize="20dp"
+        android:textColor="@color/text_dark" />
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/trainerListTraining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="40dp"
+        android:text="Trainer"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/trainer_icon" />
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/deskripsiListTraining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="65dp"
+        android:text="Deskripsi"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/deskripsi_icon" />
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/kehadiranListTraining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="90dp"
+        android:text="Kehadiran"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/jumlah_icon" />
+
+    <TextView
+        android:singleLine="true"
+        android:id="@+id/tanggalListTraining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="115dp"
+        android:text="Tanggal"
+        android:textColor="@color/abucard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="115dp"
+        android:background="@drawable/tanggal_icon"/>
+
+
+</FrameLayout>

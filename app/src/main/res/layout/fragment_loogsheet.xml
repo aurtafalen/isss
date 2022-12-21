@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/induction"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:elevation="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        app:cardBackgroundColor="@color/rediss"
+        app:cardCornerRadius="10dp"
+        tools:layout_editor_absoluteY="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Induction"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/toolbox"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:elevation="10dp"
+        app:cardBackgroundColor="@color/rediss"
+        app:cardCornerRadius="10dp"
+        tools:layout_editor_absoluteY="120dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="ToolBox"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/training"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="50dp"
+        android:elevation="10dp"
+        app:cardBackgroundColor="@color/rediss"
+        app:cardCornerRadius="10dp"
+        tools:layout_editor_absoluteY="220dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Training"
+            android:textColor="@color/white"
+            android:textSize="30dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

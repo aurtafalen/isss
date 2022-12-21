@@ -30,7 +30,7 @@ public class GalleryFragment extends Fragment {
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-//tab
+        //tab
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getActivity(), getFragmentManager() );
         ViewPager viewPager = root.findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
@@ -43,5 +43,19 @@ public class GalleryFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Tab();
+    }
+
+
+    private void Tab() {
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getActivity(), getFragmentManager() );
+        ViewPager viewPager = binding.getRoot().findViewById(R.id.view_pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+        TabLayout tabs = binding.getRoot().findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);
     }
 }

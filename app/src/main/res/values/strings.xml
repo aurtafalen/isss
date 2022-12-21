@@ -36,4 +36,17 @@
         <item>Team D</item>
     </string-array>
 
+    <string name="title_activity_login">login</string>
+
+    <item name="id" type="id" />
+    <item name="parentContentId" type="id" />
+
+    <item name="idClick" type="id" />
+    <item name="parentSection" type="id" />
+
+    <item name="idColor" type="id" />
+    <item name="idColorSection" type="id" />
+
+    <item name="idColorText" type="id" />
+    <item name="idColorTextSection" type="id" />
 </resources>

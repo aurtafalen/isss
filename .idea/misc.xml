@@ -18,11 +18,23 @@
         <entry key="..\:/ISSS/app/src/main/res/layout/activity_splash.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/drawable-v24/batang_icon.xml" value="0.23914473684210527" />
         <entry key="..\:/isss/app/src/main/res/drawable-v24/filtertanggal_icon.xml" value="0.23914473684210527" />
+        <entry key="..\:/isss/app/src/main/res/drawable/back_icon.xml" value="0.21875" />
         <entry key="..\:/isss/app/src/main/res/drawable/bintang_icon.xml" value="0.23914473684210527" />
         <entry key="..\:/isss/app/src/main/res/drawable/border.xml" value="0.37864583333333335" />
+        <entry key="..\:/isss/app/src/main/res/drawable/cardpertanyaan.xml" value="0.37864583333333335" />
+        <entry key="..\:/isss/app/src/main/res/drawable/cardpertanyaanputih.xml" value="0.21875" />
+        <entry key="..\:/isss/app/src/main/res/drawable/cardsection.xml" value="0.37864583333333335" />
         <entry key="..\:/isss/app/src/main/res/drawable/cardview.xml" value="0.37864583333333335" />
+        <entry key="..\:/isss/app/src/main/res/drawable/cardviewhijau.xml" value="0.37864583333333335" />
         <entry key="..\:/isss/app/src/main/res/drawable/dashboard_icon.xml" value="0.37864583333333335" />
+        <entry key="..\:/isss/app/src/main/res/drawable/deskripsi_icon.xml" value="0.37864583333333335" />
+        <entry key="..\:/isss/app/src/main/res/drawable/down_icon.xml" value="0.37864583333333335" />
+        <entry key="..\:/isss/app/src/main/res/drawable/imagesearch_icon.xml" value="0.21875" />
+        <entry key="..\:/isss/app/src/main/res/drawable/input_icon.xml" value="0.37864583333333335" />
+        <entry key="..\:/isss/app/src/main/res/drawable/jumlah_icon.xml" value="0.37864583333333335" />
         <entry key="..\:/isss/app/src/main/res/drawable/labelhijau.xml" value="0.21875" />
+        <entry key="..\:/isss/app/src/main/res/drawable/lokasi_icon.xml" value="0.21875" />
+        <entry key="..\:/isss/app/src/main/res/drawable/next_icon_putih.xml" value="0.37864583333333335" />
         <entry key="..\:/isss/app/src/main/res/drawable/side_nav_bar.xml" value="0.23914473684210527" />
         <entry key="..\:/isss/app/src/main/res/drawable/tanggal_icon.xml" value="0.23914473684210527" />
         <entry key="..\:/isss/app/src/main/res/drawable/textview_corner.xml" value="0.37864583333333335" />
@@ -30,21 +42,40 @@
         <entry key="..\:/isss/app/src/main/res/layout/activity_done_detail.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/layout/activity_handly_talky.xml" value="0.38697916666666665" />
         <entry key="..\:/isss/app/src/main/res/layout/activity_home_gtp.xml" value="0.25" />
+        <entry key="..\:/isss/app/src/main/res/layout/activity_induction.xml" value="0.3625" />
+        <entry key="..\:/isss/app/src/main/res/layout/activity_inspeksi_awal.xml" value="0.25" />
+        <entry key="..\:/isss/app/src/main/res/layout/activity_inspeksi_hasil.xml" value="0.20260416666666667" />
+        <entry key="..\:/isss/app/src/main/res/layout/activity_inspeksi_ketiga.xml" value="0.3625" />
+        <entry key="..\:/isss/app/src/main/res/layout/activity_inspeksi_selesai.xml" value="0.3625" />
+        <entry key="..\:/isss/app/src/main/res/layout/activity_isi_tugas.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/layout/activity_kegiatan.xml" value="0.3625" />
+        <entry key="..\:/isss/app/src/main/res/layout/activity_list_induction.xml" value="0.3484375" />
+        <entry key="..\:/isss/app/src/main/res/layout/activity_list_toolbox.xml" value="0.3484375" />
+        <entry key="..\:/isss/app/src/main/res/layout/activity_list_training.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/layout/activity_login.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/isss/app/src/main/res/layout/activity_scan.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/layout/activity_side_si.xml" value="0.22894736842105262" />
         <entry key="..\:/isss/app/src/main/res/layout/activity_splash.xml" value="0.33" />
+        <entry key="..\:/isss/app/src/main/res/layout/activity_toolbox.xml" value="0.3625" />
+        <entry key="..\:/isss/app/src/main/res/layout/activity_training.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/layout/app_bar_side_si.xml" value="0.33" />
         <entry key="..\:/isss/app/src/main/res/layout/content_side_si.xml" value="0.22894736842105262" />
         <entry key="..\:/isss/app/src/main/res/layout/file.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/layout/fragment_gallery.xml" value="0.22894736842105262" />
         <entry key="..\:/isss/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/isss/app/src/main/res/layout/fragment_loogsheet.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/layout/fragment_slideshow.xml" value="0.22894736842105262" />
+        <entry key="..\:/isss/app/src/main/res/layout/hasilfoto.xml" value="0.3625" />
+        <entry key="..\:/isss/app/src/main/res/layout/item_induction.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/layout/item_laporan.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/layout/item_laporandone.xml" value="0.3625" />
+        <entry key="..\:/isss/app/src/main/res/layout/item_laporatugas.xml" value="0.3625" />
+        <entry key="..\:/isss/app/src/main/res/layout/item_toolbox.xml" value="0.3625" />
+        <entry key="..\:/isss/app/src/main/res/layout/item_training.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/layout/nav_header_side_si.xml" value="0.22894736842105262" />
+        <entry key="..\:/isss/app/src/main/res/layout/recyclerviewimage.xml" value="0.3625" />
+        <entry key="..\:/isss/app/src/main/res/layout/tindakan.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/layout/todo.xml" value="0.3625" />
         <entry key="..\:/isss/app/src/main/res/menu/activity_main_drawer.xml" value="0.22894736842105262" />
         <entry key="..\:/isss/app/src/main/res/menu/side__s_i.xml" value="0.12796052631578947" />

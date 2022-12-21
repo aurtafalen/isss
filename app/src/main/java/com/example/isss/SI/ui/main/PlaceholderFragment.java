@@ -14,12 +14,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.isss.R;
+import com.example.isss.SI.InspeksiAwal;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -44,7 +46,7 @@ public class PlaceholderFragment extends Fragment {
     //firestore
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     //collection templates
-    CollectionReference inspections = db.collection("si").document("inspections").collection("inspections");
+    CollectionReference inspections = db.collection("si").document("data_inspections").collection("inspections");
 
     //hardCardview
     Context context;
@@ -323,11 +325,11 @@ public class PlaceholderFragment extends Fragment {
                                             .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<DocumentReference> task) {
-//                                                    doc = task.getResult().getId();
-//                                                    Log.d("cekdoc",doc);
-//                                                    Intent intent = new Intent(getActivity(), InspeksiAwal.class);
-//                                                    intent.putExtra("doc",doc);
-//                                                    startActivity(intent);
+                                                    doc = task.getResult().getId();
+                                                    Log.d("cekdoc",doc);
+                                                    Intent intent = new Intent(getActivity(), InspeksiAwal.class);
+                                                    intent.putExtra("doc",doc);
+                                                    startActivity(intent);
                                                 }
                                             });
 

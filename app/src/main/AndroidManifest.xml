@@ -23,9 +23,48 @@
         android:theme="@style/Theme.ISSS"
         tools:replace="android:icon,android:theme">
         <activity
+            android:name=".SI.ListTraining"
+            android:exported="false" />
+        <activity
+            android:name=".SI.ListToolbox"
+            android:exported="false" />
+        <activity
+            android:name=".SI.ListInduction"
+            android:exported="false" />
+        <activity
+            android:name=".SI.IsiTugas"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SI.InspeksiKetiga"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SI.InspeksiHasil"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SI.InspeksiSelesai"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SI.InspeksiAwal"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SI.Training"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SI.Toolbox"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SI.Induction"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".SI.Side_SI"
             android:exported="false"
             android:label="@string/title_activity_side_si"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.ISSS.NoActionBar" />
         <activity
             android:name=".BRS.BRS"
@@ -68,6 +107,24 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <service
+            android:name=".SendNotificationPack.MyFireBaseMessagingService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".SendNotificationPack.MyFirebaseIdService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".SI.AddressService" />
     </application>
 
 </manifest>
