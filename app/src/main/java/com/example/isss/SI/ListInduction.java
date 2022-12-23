@@ -57,8 +57,7 @@ public class ListInduction extends AppCompatActivity {
         recyclerView = findViewById(R.id.listInduction);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Query query = FirebaseFirestore.getInstance()
-                .collection("induction")
+        Query query = FirebaseFirestore.getInstance().collection("si").document("data_induction").collection("induction")
 //                .orderBy("timeDate",Query.Direction.DESCENDING)
                 .whereEqualTo("filterBulan",tgl.getText());
 

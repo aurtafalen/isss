@@ -91,7 +91,7 @@ public class Training extends AppCompatActivity {
                     //firestore
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
                     //collection templates
-                    CollectionReference push = db.collection("training");
+                    CollectionReference push = db.collection("si").document("data_training").collection("training");
 
                     push.document()
                             .set(isiTraining).addOnCompleteListener(new OnCompleteListener<Void>() {

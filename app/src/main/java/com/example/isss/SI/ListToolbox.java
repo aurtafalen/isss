@@ -65,8 +65,7 @@ public class ListToolbox extends AppCompatActivity {
         recyclerView = findViewById(R.id.listInduction);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Query query = FirebaseFirestore.getInstance()
-                .collection("toolBox")
+        Query query = FirebaseFirestore.getInstance().collection("si").document("data_toolBox").collection("toolBox")
 //                .orderBy("timeDate",Query.Direction.DESCENDING)
                 .whereEqualTo("filterBulan",tgl.getText());
 

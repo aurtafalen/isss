@@ -119,8 +119,7 @@ public class ListTraining extends AppCompatActivity {
 
                         tgl.setText((selectedMonth +1)+ "/" +selectedYear);
 
-                        Query query = FirebaseFirestore.getInstance()
-                                .collection("training")
+                        Query query = FirebaseFirestore.getInstance().collection("si").document("data_training").collection("training")
 //                .orderBy("timeDate",Query.Direction.DESCENDING)
                                 .whereEqualTo("filterBulan",tgl.getText());
 
