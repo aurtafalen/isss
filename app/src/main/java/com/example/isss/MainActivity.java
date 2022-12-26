@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     int[] sampleImages = {R.drawable.slide8, R.drawable.slide6, R.drawable.slide1, R.drawable.slide2, R.drawable.slide3};
 
     //
-    CardView ht,gtp,safety,brs;
+    CardView ht,gtp,safety,brs,cctv;
     TextView displayName;
     ImageView person;
 
@@ -259,8 +259,9 @@ public class MainActivity extends AppCompatActivity {
         ht.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,HandlyTalky.class);
-                startActivity(intent);
+//                Intent intent = new Intent(MainActivity.this,HandlyTalky.class);
+//                startActivity(intent);
+                Toast.makeText(MainActivity.this, "Menu belum tersedia!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -270,6 +271,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, BRS.class);
                 startActivity(intent);
+            }
+        });
+
+        cctv = findViewById(R.id.card_cctv);
+        cctv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Menu belum tersedia!", Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -96,6 +96,7 @@
             android:textColor="@color/text_dark" />
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/allTurun"
             android:layout_width="wrap_content"
             android:layout_height="19dp"
@@ -104,6 +105,7 @@
             android:layout_marginLeft="10dp"/>
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/allnaik"
             android:layout_width="wrap_content"
             android:layout_height="19dp"
@@ -112,6 +114,7 @@
             android:layout_marginLeft="10dp"/>
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/persenAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -172,6 +175,7 @@
             android:textColor="@color/text_dark" />
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/amanNaik"
             android:layout_width="wrap_content"
             android:layout_height="19dp"
@@ -180,6 +184,7 @@
             android:layout_marginLeft="10dp"/>
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/amanTurun"
             android:layout_width="wrap_content"
             android:layout_height="19dp"
@@ -189,6 +194,7 @@
 
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/persenAman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -249,6 +255,7 @@
             android:textColor="@color/text_dark" />
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/tidakamanTurun"
             android:layout_width="wrap_content"
             android:layout_height="19dp"
@@ -257,6 +264,7 @@
             android:layout_marginLeft="10dp"/>
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/tidakamanNaik"
             android:layout_width="wrap_content"
             android:layout_height="19dp"
@@ -265,6 +273,7 @@
             android:layout_marginLeft="10dp"/>
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/persenTidakAman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

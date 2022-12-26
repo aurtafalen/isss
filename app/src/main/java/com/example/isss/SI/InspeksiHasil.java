@@ -44,11 +44,15 @@ public class InspeksiHasil extends AppCompatActivity {
 
         if (status == null){
             query = FirebaseFirestore.getInstance()
+                    .collection("si")
+                    .document("data_inspections")
                     .collection("inspections")
                     .whereEqualTo("templateMonth",month)
                     .orderBy("status");
         }else{
             query = FirebaseFirestore.getInstance()
+                    .collection("si")
+                    .document("data_inspections")
                     .collection("inspections")
                     .whereEqualTo("templateMonth",month)
                     .whereEqualTo("status",status);

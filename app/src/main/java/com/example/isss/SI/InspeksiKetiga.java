@@ -406,6 +406,7 @@ public class InspeksiKetiga extends AppCompatActivity {
                                         desc = (String) document.get("description");
                                         String type = (String) document.get("type");
                                         Log.d("cekdes", desc);
+                                        Log.d("cektype", type);
 
                                         if (type.equals("section")) {
 

@@ -221,21 +221,31 @@ public class PlaceholderFragment extends Fragment {
 
                         if (spinergroup.equals(semua)){
                             queryDone = FirebaseFirestore.getInstance()
+                                    .collection("si")
+                                    .document("data_inspections")
                                     .collection("inspections")
                                     .orderBy("templateDate",Query.Direction.DESCENDING)
-                                    .orderBy("templateTitle");
+                                    .orderBy("templateTitle")
+                                    .whereEqualTo("status","Pass");
 
                         }else if (spinergroup.equals(wsh)){
                             queryDone = FirebaseFirestore.getInstance()
+                                    .collection("si")
+                                    .document("data_inspections")
                                     .collection("inspections")
                                     .orderBy("templateDate",Query.Direction.DESCENDING)
-                                    .whereEqualTo("templateGroup",wsh);
+                                    .whereEqualTo("templateGroup",wsh)
+                                    .whereEqualTo("status","Pass");
 
                         }else if (spinergroup.equals(fsd)){
                             queryDone = FirebaseFirestore.getInstance()
+                                    .collection("si")
+                                    .document("data_inspections")
                                     .collection("inspections")
                                     .orderBy("templateDate",Query.Direction.DESCENDING)
-                                    .whereEqualTo("templateGroup",fsd);
+                                    .whereEqualTo("templateGroup",fsd)
+                                    .whereEqualTo("status","Pass");
+
 
                         }
 

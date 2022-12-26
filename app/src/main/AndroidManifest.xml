@@ -23,6 +23,9 @@
         android:theme="@style/Theme.ISSS"
         tools:replace="android:icon,android:theme">
         <activity
+            android:name=".GTP.Admin_Home_Gtp"
+            android:exported="false" />
+        <activity
             android:name=".SI.ListTraining"
             android:exported="false" />
         <activity
@@ -58,6 +61,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".SI.Induction"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SI.ui.main.DoneDetail"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

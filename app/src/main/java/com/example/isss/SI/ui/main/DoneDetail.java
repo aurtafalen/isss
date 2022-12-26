@@ -30,10 +30,9 @@ public class DoneDetail extends AppCompatActivity {
     String documentClickId;
     //firestore
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    //collection templates
-    CollectionReference pages = db.collection("templates");
+
     //Collection hasiltemplates
-    CollectionReference df = db.collection("inspections");
+    CollectionReference df = db.collection("si").document("data_inspections").collection("inspections");
 
     TextView title,description,team,waktu,temperatur,kordinat,lokasi,status,signature;
     ImageView signatureImg;

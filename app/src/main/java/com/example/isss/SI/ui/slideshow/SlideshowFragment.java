@@ -44,6 +44,8 @@ public class SlideshowFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         Query query = FirebaseFirestore.getInstance()
+                .collection("si")
+                .document("data_inspections")
                 .collection("tugasTemplate")
 //                .orderBy("templateDate",Query.Direction.DESCENDING)
                 .whereEqualTo("statusTugas","Belum Selesai");
