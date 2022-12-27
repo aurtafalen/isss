@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.isss.BRS.BRS;
+import com.example.isss.GTP.Admin_Home_Gtp;
 import com.example.isss.GTP.Home_Gtp;
 import com.example.isss.GTP.LocationService;
 import com.example.isss.GTP.SendDataPatroli;
@@ -185,10 +186,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //validasiArray True
-               boolean hasAccessGtp = accessPage.contains("gtp");
-
+                boolean hasAccessAdminGtp = accessPage.contains("gtp_admin");
+                boolean hasAccessGtp = accessPage.contains("gtp");
                 Log.d(TAG, "hasAccessGtp : "+hasAccessGtp);
-                    if (hasAccessGtp){
+                if (hasAccessAdminGtp){
+                    Intent intent = new Intent(MainActivity.this, Admin_Home_Gtp.class);
+                    startActivity(intent);
+                }else if (hasAccessGtp){
                         //atribut
                         dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
                         String iddoc = dateFormat.format(Calendar.getInstance().getTime());
