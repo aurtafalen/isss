@@ -66,6 +66,8 @@ public class ListTraining extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Query query = FirebaseFirestore.getInstance()
+                .collection("si")
+                .document("data_training")
                 .collection("training")
 //                .orderBy("timeDate",Query.Direction.DESCENDING)
                 .whereEqualTo("filterBulan",tgl.getText());

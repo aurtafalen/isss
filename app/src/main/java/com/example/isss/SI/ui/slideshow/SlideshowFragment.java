@@ -45,7 +45,7 @@ public class SlideshowFragment extends Fragment {
 
         Query query = FirebaseFirestore.getInstance()
                 .collection("si")
-                .document("data_inspections")
+                .document("data_tugasTemplate")
                 .collection("tugasTemplate")
 //                .orderBy("templateDate",Query.Direction.DESCENDING)
                 .whereEqualTo("statusTugas","Belum Selesai");

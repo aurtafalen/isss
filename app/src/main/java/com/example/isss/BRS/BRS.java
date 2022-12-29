@@ -37,11 +37,14 @@ import android.widget.Toast;
 
 import com.example.isss.GTP.CustomAdapter;
 import com.example.isss.GTP.Home_Gtp;
-import com.example.isss.GTP.Kegiatan;
 import com.example.isss.GTP.ModalClass;
-import com.example.isss.GTP.SendDataKegiatan;
 import com.example.isss.MainActivity;
 import com.example.isss.R;
+import com.example.isss.SendNotificationPack.APIService;
+import com.example.isss.SendNotificationPack.Client;
+import com.example.isss.SendNotificationPack.Data;
+import com.example.isss.SendNotificationPack.MyResponse;
+import com.example.isss.SendNotificationPack.NotificationSender;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -49,6 +52,10 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -60,7 +67,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeoutException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BRS extends AppCompatActivity {
 
@@ -95,6 +105,12 @@ public class BRS extends AppCompatActivity {
     //foto
     RecyclerView rFoto;
 
+    //PushNotif
+    private APIService apiService;
+    final private String title = "Batamindo Reporting System";
+    ArrayList<String> uidGtp = new ArrayList<>();
+    ArrayList<String> uidSi = new ArrayList<>();
+
     //CameraCode
     private static final int PICK_FROM_GALLERY = 107;
     private static final int IMAGE_CODE = 1;
@@ -125,6 +141,10 @@ public class BRS extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brs);
+
+        //notif
+        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
+
 
         //checkbox
         Disruption = findViewById(R.id.Disruption);
@@ -361,12 +381,43 @@ public class BRS extends AppCompatActivity {
                                                 progress.dismiss();
 
                                                 if (idDocument == null){
+//                                                    //notif
+//                                                    uidGtp.add("yhksngpmjDezajBOywyKwd453372");
+//                                                    uidGtp.add("Y5AKtCuyZMbyU49JCimzSWG9ljF3");
+//                                                    uidGtp.add("DB9CarrbKRWZYNcbVomIxZ8wxj13");
+//                                                    uidGtp.add("rktGLNBP8bfIq7fgs5vEXxHuePp2");
+//                                                    uidGtp.add("UVwCtvOQ4cNcreAJN1cd3XUF1c13");
+//                                                    uidGtp.add("TMXl1jCAomecyLBMj7xw5P6eIy12");
+//                                                    uidGtp.add("DT3gSlK8psZ4ctKNFSpqpGcgz4O2");
+//                                                    uidGtp.add("RSFqB02IxPP2Gb4kXHWVHddn5hG3");
+
+                                                    //testAurtaAli
+                                                    uidGtp.add("xinVZDlpN2WzpTEkfRVEK5t9Xgh2");
+                                                    uidGtp.add("lOu0IOzf6gWEK4YAV2fLlPSRZtm1");
+
+                                                    for (int i = 0; i < uidGtp.size(); i++) {
+                                                        FirebaseDatabase.getInstance().getReference().child("Tokens").child(String.valueOf(i)).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                                Log.d("pushNotifCheck", "yes");
+                                                                String usertoken = dataSnapshot.getValue(String.class);
+                                                                sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                            }
+                                                        });
+                                                    }
+
                                                     Toast.makeText(getApplicationContext(), "Laporan berhasil masuk!", Toast.LENGTH_LONG).show();
                                                     Intent i = new Intent(BRS.this, MainActivity.class);
                                                     i.putExtra("idDoc", idDocument);
                                                     i.putExtra("displayName",displayName);
                                                     startActivity(i);
                                                     finish();
+
                                                 }else{
                                                     Toast.makeText(getApplicationContext(), "Laporan berhasil masuk!", Toast.LENGTH_LONG).show();
                                                     Intent i = new Intent(BRS.this, Home_Gtp.class);
@@ -512,4 +563,23 @@ public class BRS extends AppCompatActivity {
         return mime.getExtensionFromMimeType(c.getType(contentUri));
     }
 
+    public void sendNotifications(String usertoken, String title, String message) {
+        Data data = new Data(title, message);
+        NotificationSender sender = new NotificationSender(data, usertoken);
+        apiService.sendNotifcation(sender).enqueue(new Callback<MyResponse>() {
+            @Override
+            public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                if (response.code() == 200) {
+                    if (response.body().success != 1) {
+//                        Toast.makeText(Start.this, "Failed ", Toast.LENGTH_LONG);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MyResponse> call, Throwable t) {
+
+            }
+        });
+    }
 }

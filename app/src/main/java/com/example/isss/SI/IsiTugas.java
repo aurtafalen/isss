@@ -54,9 +54,9 @@ public class IsiTugas extends AppCompatActivity {
     //firestore
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     //collection templates
-    CollectionReference tugas = db.collection("tugasTemplate");
+    CollectionReference tugas = db.collection("si").document("data_tugasTemplate").collection("tugasTemplate");
 
-    CollectionReference update = db.collection("inspections");
+    CollectionReference update = db.collection("si").document("data_inspections").collection("inspections");
 
     TextView title,desc,tgl,pertanyaan,alamat;
     ImageView foto;

@@ -1504,7 +1504,7 @@ public class InspeksiKetiga extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 String usertoken = dataSnapshot.getValue(String.class);
-                                                Log.d("usertoken",usertoken);
+//                                                Log.d("usertoken",usertoken);
                                                 kirimnotif(usertoken, title.toString().trim(), pesan.toString().trim());
                                             }
 

@@ -423,7 +423,7 @@ public class Induction extends AppCompatActivity {
                                 //firestore
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                                 //collection templates
-                                CollectionReference push = db.collection("induction");
+                                CollectionReference push = db.collection("si").document("data_induction").collection("induction");
 
                                 push.document()
                                         .set(isiInduction).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -492,7 +492,7 @@ public class Induction extends AppCompatActivity {
                                 //firestore
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                                 //collection templates
-                                CollectionReference push = db.collection("induction");
+                                CollectionReference push = db.collection("si").document("data_induction").collection("induction");
 
                                 push.document()
                                         .set(isiInduction).addOnCompleteListener(new OnCompleteListener<Void>() {
