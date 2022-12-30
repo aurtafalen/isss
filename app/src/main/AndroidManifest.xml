@@ -132,6 +132,9 @@
             </intent-filter>
         </service>
         <service android:name=".SI.AddressService" />
+
+
+
     </application>
 
 </manifest>

@@ -108,8 +108,8 @@ public class BRS extends AppCompatActivity {
     //PushNotif
     private APIService apiService;
     final private String title = "Batamindo Reporting System";
-    ArrayList<String> uidGtp = new ArrayList<>();
-    ArrayList<String> uidSi = new ArrayList<>();
+//    ArrayList<String> uidGtp = new ArrayList<>();
+//    ArrayList<String> uidSi = new ArrayList<>();
 
     //CameraCode
     private static final int PICK_FROM_GALLERY = 107;
@@ -391,25 +391,70 @@ public class BRS extends AppCompatActivity {
 //                                                    uidGtp.add("DT3gSlK8psZ4ctKNFSpqpGcgz4O2");
 //                                                    uidGtp.add("RSFqB02IxPP2Gb4kXHWVHddn5hG3");
 
-                                                    //testAurtaAli
-                                                    uidGtp.add("xinVZDlpN2WzpTEkfRVEK5t9Xgh2");
-                                                    uidGtp.add("lOu0IOzf6gWEK4YAV2fLlPSRZtm1");
+//                                                    List<String> uidG = new ArrayList<String>();
+//                                                    //testAurtaAli
+//                                                    uidG.add("xinVZDlpN2WzpTEkfRVEK5t9Xgh2");
+//                                                    uidG.add("lOu0IOzf6gWEK4YAV2fLlPSRZtm1");
 
-                                                    for (int i = 0; i < uidGtp.size(); i++) {
-                                                        FirebaseDatabase.getInstance().getReference().child("Tokens").child(String.valueOf(i)).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
-                                                            @Override
-                                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                                                Log.d("pushNotifCheck", "yes");
-                                                                String usertoken = dataSnapshot.getValue(String.class);
-                                                                sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
-                                                            }
+//                                                    for (int i = 0; i < uidG.size(); i++) {
+//                                                        FirebaseDatabase.getInstance().getReference().child("Tokens").child(String.valueOf(i)).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+//                                                            @Override
+//                                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                                                                String usertoken = dataSnapshot.getValue(String.class);
+//                                                                Log.d("pushNotifCheck", String.valueOf(usertoken));
+//                                                                sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+//                                                            }
+//
+//                                                            @Override
+//                                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                                                            }
+//                                                        });
+//                                                    }
+                                                    String uidCso = "u8rzSyDZAsYLqBwxGb4v7D4LV6l1";
+                                                    FirebaseDatabase.getInstance().getReference().child("Tokens").child(uidCso).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                            String usertoken = dataSnapshot.getValue(String.class);
+                                                            Log.d("pushNotifCheck", String.valueOf(usertoken));
+                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+                                                        }
 
-                                                            @Override
-                                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                                                            }
-                                                        });
-                                                    }
+                                                        }
+                                                    });
+
+                                                    String uidAurta = "lOu0IOzf6gWEK4YAV2fLlPSRZtm1";
+                                                    FirebaseDatabase.getInstance().getReference().child("Tokens").child(uidAurta).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                            String usertoken = dataSnapshot.getValue(String.class);
+                                                            Log.d("pushNotifCheck", String.valueOf(usertoken));
+                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                        }
+                                                    });
+
+                                                    String uidIsmail = "lOu0IOzf6gWEK4YAV2fLlPSRZtm1";
+                                                    FirebaseDatabase.getInstance().getReference().child("Tokens").child(uidIsmail).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                            String usertoken = dataSnapshot.getValue(String.class);
+                                                            Log.d("pushNotifCheck", String.valueOf(usertoken));
+                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                        }
+                                                    });
 
                                                     Toast.makeText(getApplicationContext(), "Laporan berhasil masuk!", Toast.LENGTH_LONG).show();
                                                     Intent i = new Intent(BRS.this, MainActivity.class);
@@ -419,6 +464,51 @@ public class BRS extends AppCompatActivity {
                                                     finish();
 
                                                 }else{
+                                                    String uidCso = "u8rzSyDZAsYLqBwxGb4v7D4LV6l1";
+                                                    FirebaseDatabase.getInstance().getReference().child("Tokens").child(uidCso).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                            String usertoken = dataSnapshot.getValue(String.class);
+                                                            Log.d("pushNotifCheck", String.valueOf(usertoken));
+                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                        }
+                                                    });
+
+                                                    String uidAurta = "lOu0IOzf6gWEK4YAV2fLlPSRZtm1";
+                                                    FirebaseDatabase.getInstance().getReference().child("Tokens").child(uidAurta).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                            String usertoken = dataSnapshot.getValue(String.class);
+                                                            Log.d("pushNotifCheck", String.valueOf(usertoken));
+                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                        }
+                                                    });
+
+                                                    String uidIsmail = "lOu0IOzf6gWEK4YAV2fLlPSRZtm1";
+                                                    FirebaseDatabase.getInstance().getReference().child("Tokens").child(uidIsmail).child("token").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                            String usertoken = dataSnapshot.getValue(String.class);
+                                                            Log.d("pushNotifCheck", String.valueOf(usertoken));
+                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                        }
+                                                    });
+
                                                     Toast.makeText(getApplicationContext(), "Laporan berhasil masuk!", Toast.LENGTH_LONG).show();
                                                     Intent i = new Intent(BRS.this, Home_Gtp.class);
                                                     i.putExtra("idDoc", idDocument);

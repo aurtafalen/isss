@@ -37,7 +37,8 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
         title=remoteMessage.getData().get("Title");
         message=remoteMessage.getData().get("Message");
         NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        Intent intent = new Intent(this, Side_SI.class);
+//        Intent intent = new Intent(this, Side_SI.class);
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://dbisss-78135.web.app/dashboard/app"));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(id, "123", importance);//Generating channel
@@ -60,7 +61,7 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
 //        notification.contentIntent = contentIntent;
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext());
-        stackBuilder.addNextIntent(intent);
+        stackBuilder.addNextIntent(browserIntent);
         PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
                 0,
                 PendingIntent.FLAG_UPDATE_CURRENT
