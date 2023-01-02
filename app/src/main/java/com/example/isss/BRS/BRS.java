@@ -52,10 +52,12 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -66,7 +68,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -86,6 +90,7 @@ public class BRS extends AppCompatActivity {
     TextView vDate,vTime;
     //firebase
     FirebaseFirestore dbs;
+    FirebaseAuth mAuth;
 
     //date firebase
     Timestamp fwaktu = Timestamp.now();
@@ -137,14 +142,37 @@ public class BRS extends AppCompatActivity {
 
     //firebaseTimeStamp
     Timestamp ts;
+
+    //dataUser
+    Map<String, Object> mapDataUser = new HashMap<String, Object>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brs);
+        //firebase
+        dbs = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
+        //getDataUser
+        dbs.collection("users").document(mAuth.getUid())
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        mapDataUser = document.getData();
+                        Log.d("getDataUser", "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d("getDataUser", "No such document");
+                    }
+                }
+            }
+        });
 
         //notif
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
-
 
         //checkbox
         Disruption = findViewById(R.id.Disruption);
@@ -155,6 +183,8 @@ public class BRS extends AppCompatActivity {
         iLost = findViewById(R.id.iLost);
         Fatality = findViewById(R.id.Fatality);
 
+        vDate = findViewById(R.id.vDate);
+        vTime = findViewById(R.id.vTime);
 
         //waktu
         lWaktu = findViewById(R.id.lTimeIncident);
@@ -166,7 +196,6 @@ public class BRS extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         // Set the selected date in the TextView
-                        vDate = findViewById(R.id.vDate);
                         vDate.setText(String.format("%d/%d/%d", day, month+1, year));
                     }
                 }, year, month, day);
@@ -177,7 +206,6 @@ public class BRS extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hour, int minute) {
                         // Set the selected time in the TextView
-                        vTime = findViewById(R.id.vTime);
                         vTime.setText(String.format(" %d:%d", hour, minute));
                     }
                 }, hour, minute, true);
@@ -191,8 +219,7 @@ public class BRS extends AppCompatActivity {
         progress.setMessage("Loading...");
         progress.setCancelable(false); // disable dismiss by tapping outside of the dialog
 
-        //firebase
-        dbs = FirebaseFirestore.getInstance();
+
 
         //string
         idDocument = getIntent().getStringExtra("idDoc");
@@ -219,7 +246,7 @@ public class BRS extends AppCompatActivity {
 
         //kategori
         kategori = findViewById(R.id.sKategori);
-        aKategori = new String[]{"Kriminal", "Safety", "Pilih Kategori.."};
+        aKategori = new String[]{"Security", "Safety", "Pilih Kategori.."};
         kategoriAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, aKategori){
             @Override
             public int getCount() {
@@ -278,12 +305,17 @@ public class BRS extends AppCompatActivity {
             public void onClick(View v) {
                 String getLokasi = eLokasi.getText().toString();
                 String getDeskripsi = eDeskripsi.getText().toString();
+                String txtDate = vDate.getText().toString();
+                String txtTime = vTime.getText().toString();
+                String dateString = txtDate+txtTime;
+                if (ts == null){
+                    ts = fwaktu;
+                }
 
-                if (getLokasi.isEmpty()&& getDeskripsi.isEmpty()&& listImage.isEmpty()) {
+                if (getLokasi.isEmpty()&& getDeskripsi.isEmpty()&& listImage.isEmpty() && dateString.isEmpty()) {
                     eLokasi.setError("Tidak boleh kosong !");
                     eDeskripsi.setError("Tidak boleh kosong !");
-                    Toast.makeText(getApplicationContext(), "Foto Tidak Boleh kosong !", Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(getApplicationContext(), "Tidak boleh kosong!", Toast.LENGTH_LONG).show();
                 }
                 else if (getLokasi.isEmpty()) {
                     eLokasi.setError("Tidak boleh kosong !");
@@ -291,16 +323,16 @@ public class BRS extends AppCompatActivity {
                     eDeskripsi.setError("Tidak boleh kosong !");
                 } else if (listImage.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Foto Tidak Boleh kosong !", Toast.LENGTH_LONG).show();
+                }else if (dateString.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Waktu Kejadian Tidak Boleh kosong !", Toast.LENGTH_LONG).show();
+                } else if (lSubKategori.getVisibility() == View.GONE) {
+                    Toast.makeText(getApplicationContext(), "Harap pilih kategori !", Toast.LENGTH_LONG).show();
                 } else {
                     progress.show();
-
-                    //getTime
-                    String txtDate = vDate.getText().toString();
-                    String txtTime = vTime.getText().toString();
-                    String dateString = txtDate+txtTime;
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
                     try {
                         // Parse the string into a date object
+
                         Date date = dateFormat.parse(dateString);
 
                         // Convert the date object to a timestamp
@@ -362,7 +394,7 @@ public class BRS extends AppCompatActivity {
                                     eDeskripsi.getText().toString(),
                                     listImage,
                                     fwaktu,
-                                    displayName,
+                                    mapDataUser,
                                     eLokasi.getText().toString(),
                                     CurrentLat,
                                     CurrentLng,

@@ -4,12 +4,13 @@ package com.example.isss.BRS;
 import com.google.firebase.Timestamp;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class SendDataBRS {
     private String description;
     private ArrayList image_url;
     private Timestamp time_reported;
-    private String team;
+    private Map team;
     private String lokasi;
     private Double lat;
     private Double lng;
@@ -18,7 +19,7 @@ public class SendDataBRS {
     private ArrayList effects;
     private Timestamp time_incident;
 
-    public SendDataBRS(String description, ArrayList image_url, Timestamp time_reported, String team, String lokasi, Double lat, Double lng, String kategori, String subKategori, ArrayList effects, Timestamp time_incident) {
+    public SendDataBRS(String description, ArrayList image_url, Timestamp time_reported, Map team, String lokasi, Double lat, Double lng, String kategori, String subKategori, ArrayList effects, Timestamp time_incident) {
         this.description = description;
         this.image_url = image_url;
         this.time_reported = time_reported;
@@ -56,11 +57,11 @@ public class SendDataBRS {
         this.time_reported = time_reported;
     }
 
-    public String getTeam() {
+    public Map getTeam() {
         return team;
     }
 
-    public void setTeam(String team) {
+    public void setTeam(Map team) {
         this.team = team;
     }
 
