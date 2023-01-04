@@ -7,11 +7,14 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class SendDataBRS {
+    private String nama;
+    private String kontak;
     private String description;
     private ArrayList image_url;
     private Timestamp time_reported;
     private Map team;
-    private String lokasi;
+    private String nama_gedung;
+    private String nama_jalan;
     private Double lat;
     private Double lng;
     private String kategori;
@@ -19,18 +22,37 @@ public class SendDataBRS {
     private ArrayList effects;
     private Timestamp time_incident;
 
-    public SendDataBRS(String description, ArrayList image_url, Timestamp time_reported, Map team, String lokasi, Double lat, Double lng, String kategori, String subKategori, ArrayList effects, Timestamp time_incident) {
+    public SendDataBRS(String nama, String kontak, String description, ArrayList image_url, Timestamp time_reported, Map team, String nama_gedung, String nama_jalan, Double lat, Double lng, String kategori, String subKategori, ArrayList effects, Timestamp time_incident) {
+        this.nama = nama;
+        this.kontak = kontak;
         this.description = description;
         this.image_url = image_url;
         this.time_reported = time_reported;
         this.team = team;
-        this.lokasi = lokasi;
+        this.nama_gedung = nama_gedung;
+        this.nama_jalan = nama_jalan;
         this.lat = lat;
         this.lng = lng;
         this.kategori = kategori;
         this.subKategori = subKategori;
         this.effects = effects;
         this.time_incident = time_incident;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getKontak() {
+        return kontak;
+    }
+
+    public void setKontak(String kontak) {
+        this.kontak = kontak;
     }
 
     public String getDescription() {
@@ -65,12 +87,20 @@ public class SendDataBRS {
         this.team = team;
     }
 
-    public String getLokasi() {
-        return lokasi;
+    public String getNama_gedung() {
+        return nama_gedung;
     }
 
-    public void setLokasi(String lokasi) {
-        this.lokasi = lokasi;
+    public void setNama_gedung(String nama_gedung) {
+        this.nama_gedung = nama_gedung;
+    }
+
+    public String getNama_jalan() {
+        return nama_jalan;
+    }
+
+    public void setNama_jalan(String nama_jalan) {
+        this.nama_jalan = nama_jalan;
     }
 
     public Double getLat() {

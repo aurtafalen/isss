@@ -85,7 +85,7 @@ public class BRS extends AppCompatActivity {
     LinearLayout lSubKategori,lWaktu;
 
     //atribut
-    EditText eLokasi,eDeskripsi;
+    EditText eGedung,eJalan,eDeskripsi,eNama,eKontak;
     Button bKirim;
     TextView vDate,vTime;
     //firebase
@@ -138,7 +138,7 @@ public class BRS extends AppCompatActivity {
     int minute = c.get(Calendar.MINUTE);
 
     //checkbox
-    CheckBox Disruption,Property,Environmental,iFirst,iRestricted,iLost,Fatality;
+    CheckBox Disruption,Property,Environmental,iFirst,Fatality;
 
     //firebaseTimeStamp
     Timestamp ts;
@@ -179,8 +179,6 @@ public class BRS extends AppCompatActivity {
         Property = findViewById(R.id.Property);
         Environmental = findViewById(R.id.Environmental);
         iFirst = findViewById(R.id.iFirst);
-        iRestricted = findViewById(R.id.iRestricted);
-        iLost = findViewById(R.id.iLost);
         Fatality = findViewById(R.id.Fatality);
 
         vDate = findViewById(R.id.vDate);
@@ -246,7 +244,7 @@ public class BRS extends AppCompatActivity {
 
         //kategori
         kategori = findViewById(R.id.sKategori);
-        aKategori = new String[]{"Security", "Safety", "Pilih Kategori.."};
+        aKategori = new String[]{"Security Related", "Work Safety Healty Related", "Pilih Kategori.."};
         kategoriAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, aKategori){
             @Override
             public int getCount() {
@@ -259,8 +257,17 @@ public class BRS extends AppCompatActivity {
 
         //subKategori
         subKategori = findViewById(R.id.sSubKategori);
-        aSubKategoriKriminal = new String[]{"Pencurian","Pelanggaran Asusila","Penjambretan","Penganiayaan","Pemerkosaan","Lainnya","Pilih SubKategori.."};
-        aSubKategoriSafety = new String[]{"Kecelakaan Lalulintas","Property Damage","Work Place","Near Miss","Traffic","Lainnya","Pilih SubKategori.."};
+        aSubKategoriKriminal = new String[]{"Premise Break-Ins And Related Crimes",
+                "Theft And Related Crimes",
+                "Miscellaneous Crimes and Offences (Public Nuisance,Mischief,Affray,Vandalism,Possession of Weapons)",
+                "Crimes Agains Person (Such as assault,robbery,sexual assault,etc)",
+                "Commercial Crimes (Such as scams)",
+                "Crimes Against Morality (Ilegal drug use, Ilegal gambling, Incident act,ect",
+                "Statutory Crimes (Ilegal drug use possession, Public Intoxication,ect",
+                "Traffic Offences (Such as driving under influence , Driving/Riding Without License,Ilegal Parking,ect",
+                "Pilih SubKategori.."};
+
+        aSubKategoriSafety = new String[]{"Unsafe Act","Unsafe Condition","Pilih SubKategori.."};
 
         kategori.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -297,13 +304,19 @@ public class BRS extends AppCompatActivity {
             }
         });
 
-        eLokasi = findViewById(R.id.eLocation);
+        //editText
+        eGedung = findViewById(R.id.eGedung);
+        eJalan = findViewById(R.id.ejalan);
         eDeskripsi = findViewById(R.id.eDesc);
+        eNama = findViewById(R.id.eName);
+        eKontak = findViewById(R.id.eContact);
+
         bKirim = findViewById(R.id.btn_kirim);
         bKirim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String getLokasi = eLokasi.getText().toString();
+                String getGedung = eGedung.getText().toString();
+                String getJalan = eJalan.getText().toString();
                 String getDeskripsi = eDeskripsi.getText().toString();
                 String txtDate = vDate.getText().toString();
                 String txtTime = vTime.getText().toString();
@@ -312,21 +325,29 @@ public class BRS extends AppCompatActivity {
                     ts = fwaktu;
                 }
 
-                if (getLokasi.isEmpty()&& getDeskripsi.isEmpty()&& listImage.isEmpty() && dateString.isEmpty()) {
-                    eLokasi.setError("Tidak boleh kosong !");
-                    eDeskripsi.setError("Tidak boleh kosong !");
+                if (getGedung.isEmpty() && getJalan.isEmpty() && getDeskripsi.isEmpty()&& listImage.isEmpty() && dateString.isEmpty()) {
+                    eGedung.setError("Tidak boleh kosong!");
+                    eJalan.setError("Tidak boleh Kosong!");
+                    eDeskripsi.setError("Tidak boleh kosong!");
                     Toast.makeText(getApplicationContext(), "Tidak boleh kosong!", Toast.LENGTH_LONG).show();
                 }
-                else if (getLokasi.isEmpty()) {
-                    eLokasi.setError("Tidak boleh kosong !");
-                } else if (getDeskripsi.isEmpty()) {
-                    eDeskripsi.setError("Tidak boleh kosong !");
+                else if (getGedung.isEmpty()) {
+                    eGedung.setError("Tidak boleh kosong!");
+                    Toast.makeText(getApplicationContext(), "Nama Gedung tidak boleh kosong!", Toast.LENGTH_LONG).show();
+                }
+                else if (getJalan.isEmpty()) {
+                    eJalan.setError("Tidak boleh kosong!");
+                    Toast.makeText(getApplicationContext(), "Nama jalan tidak boleh kosong!", Toast.LENGTH_LONG).show();
+                }
+                else if (getDeskripsi.isEmpty()) {
+                    eDeskripsi.setError("Tidak boleh kosong!");
+                    Toast.makeText(getApplicationContext(), "Deksripsi tidak boleh kosong!", Toast.LENGTH_LONG).show();
                 } else if (listImage.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Foto Tidak Boleh kosong !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Foto Tidak Boleh kosong!", Toast.LENGTH_LONG).show();
                 }else if (dateString.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Waktu Kejadian Tidak Boleh kosong !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Waktu Kejadian Tidak Boleh kosong!", Toast.LENGTH_LONG).show();
                 } else if (lSubKategori.getVisibility() == View.GONE) {
-                    Toast.makeText(getApplicationContext(), "Harap pilih kategori !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Harap pilih kategori!", Toast.LENGTH_LONG).show();
                 } else {
                     progress.show();
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
@@ -361,12 +382,6 @@ public class BRS extends AppCompatActivity {
                     if (iFirst.isChecked()){
                         effects.add(iFirst.getText());
                     }
-                    if (iRestricted.isChecked()){
-                        effects.add(iRestricted.getText());
-                    }
-                    if (iLost.isChecked()){
-                        effects.add(iLost.getText());
-                    }
                     if (Fatality.isChecked()){
                         effects.add(Fatality.getText());
                     }
@@ -391,11 +406,14 @@ public class BRS extends AppCompatActivity {
                             double CurrentLng = location.getLongitude();
 
                             SendDataBRS sendDataBRS = new SendDataBRS(
+                                    eNama.getText().toString(),
+                                    eKontak.getText().toString(),
                                     eDeskripsi.getText().toString(),
                                     listImage,
                                     fwaktu,
                                     mapDataUser,
-                                    eLokasi.getText().toString(),
+                                    eGedung.getText().toString(),
+                                    eJalan.getText().toString(),
                                     CurrentLat,
                                     CurrentLng,
                                     kategori.getSelectedItem().toString(),
@@ -449,7 +467,7 @@ public class BRS extends AppCompatActivity {
                                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                             String usertoken = dataSnapshot.getValue(String.class);
                                                             Log.d("pushNotifCheck", String.valueOf(usertoken));
-                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eGedung.getText().toString().trim());
                                                         }
 
                                                         @Override
@@ -464,7 +482,7 @@ public class BRS extends AppCompatActivity {
                                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                             String usertoken = dataSnapshot.getValue(String.class);
                                                             Log.d("pushNotifCheck", String.valueOf(usertoken));
-                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eGedung.getText().toString().trim());
                                                         }
 
                                                         @Override
@@ -479,7 +497,7 @@ public class BRS extends AppCompatActivity {
                                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                             String usertoken = dataSnapshot.getValue(String.class);
                                                             Log.d("pushNotifCheck", String.valueOf(usertoken));
-                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eGedung.getText().toString().trim());
                                                         }
 
                                                         @Override
@@ -502,7 +520,7 @@ public class BRS extends AppCompatActivity {
                                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                             String usertoken = dataSnapshot.getValue(String.class);
                                                             Log.d("pushNotifCheck", String.valueOf(usertoken));
-                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eGedung.getText().toString().trim());
                                                         }
 
                                                         @Override
@@ -517,7 +535,7 @@ public class BRS extends AppCompatActivity {
                                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                             String usertoken = dataSnapshot.getValue(String.class);
                                                             Log.d("pushNotifCheck", String.valueOf(usertoken));
-                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eGedung.getText().toString().trim());
                                                         }
 
                                                         @Override
@@ -532,7 +550,7 @@ public class BRS extends AppCompatActivity {
                                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                             String usertoken = dataSnapshot.getValue(String.class);
                                                             Log.d("pushNotifCheck", String.valueOf(usertoken));
-                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eLokasi.getText().toString().trim());
+                                                            sendNotifications(usertoken, title.toString().trim(), "Telah terjadi "+subKategori.getSelectedItem().toString()+" di lokasi "+eGedung.getText().toString().trim());
                                                         }
 
                                                         @Override

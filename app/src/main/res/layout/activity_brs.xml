@@ -36,21 +36,83 @@
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txt_location"
+            android:id="@+id/txt_name"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp">
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/eLocation"
+                android:id="@+id/eName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Lokasi"
+                android:hint="Nama Pelapor"
                 android:paddingStart="10dp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txt_contact"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/eContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nomor Kontak Pelapor"
+                android:inputType="number"
+                android:paddingStart="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="15dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lokasi"
+        android:layout_marginBottom="15dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txt_gedung"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/eGedung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nama Gedung"
+                android:paddingStart="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_jalan"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ejalan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Jalan"
+            android:paddingStart="10dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -162,7 +224,7 @@
                         android:id="@+id/Disruption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Disruption of Operations"
+                        android:text="Disruption"
                         android:layout_gravity="fill"
                         android:layout_columnWeight="1"
                        />
@@ -236,7 +298,7 @@
                     android:id="@+id/iFirst"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" Injury - First Aid"
+                    android:text=" Injury"
                     android:layout_gravity="fill"
                     android:layout_columnWeight="1" />
             </LinearLayout>
@@ -256,42 +318,7 @@
 
                 <!-- Column 1 -->
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
 
-                    <CheckBox
-                        android:id="@+id/iRestricted"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Injury - Restricted Work"
-                        android:layout_gravity="fill"
-                        android:layout_columnWeight="1" />
-                </LinearLayout>
-
-
-                <!-- Column 2 -->
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <CheckBox
-                        android:id="@+id/iLost"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Injury - Lost Time"
-                        android:layout_gravity="fill"
-                        android:layout_columnWeight="1" />
-                </LinearLayout>
 
             </LinearLayout>
 
